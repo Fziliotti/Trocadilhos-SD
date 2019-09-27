@@ -28,6 +28,7 @@ public class Server {
                 Scanner entrada = new Scanner(client.getInputStream());
                 saida.println("Digite seu nickname: ");
                 String playerName = entrada.nextLine();
+                saida.println("Aguarde a entrada de mais jogadores =)");
                 playerList.add(new Player(UUID.randomUUID(), playerName, client));
 
             }
