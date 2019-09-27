@@ -14,14 +14,16 @@ public class Client {
             Socket socket = new Socket("localhost", 12345);
             Scanner scanner = new Scanner(System.in);
             PrintStream saida = new PrintStream(socket.getOutputStream());
-            Scanner entrada = new Scanner(socket.getInputStream());
 
-            while(scanner.hasNextLine()){
+            ServerMessageReceiver serverMessageReceiver =
+                    new ServerMessageReceiver(socket.getInputStream());
+            new Thread(serverMessageReceiver).start();
+
+            while (scanner.hasNextLine()) {
                 saida.println(scanner.nextLine());
-                //System.out.println(entrada.nextLine());
             }
 
-        }catch (IOException ex){
+        } catch (IOException ex) {
             log.info("Erro de conexão");
         }
     }
