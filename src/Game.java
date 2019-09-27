@@ -19,7 +19,7 @@ public class Game {
         this.roundDurationInSeconds = roundDurationInSeconds;
         this.pointsToWin = pointsToWin;
         this.players = players;
-        this.actualRound = new Round();
+        this.actualRound = null;
         this.roundsHistory = new ArrayList<>();
     }
 
@@ -73,16 +73,46 @@ public class Game {
 
     public void run() {
 
+        startRound();
+        showScoreboard();
 
+
+    }
+
+
+
+    private void showScoreboard() {
         System.out.println("SCOREBOARD - ROUND " + this.actualRound.getNumber());
-        Collections.sort(players, Player::compareTo);
-        players.forEach(player -> {
+
+        players.stream().sorted(Player::compareTo).forEach(player -> {
             System.out.println(player.getName() + " ---- " + player.getScore());
         });
 
-        System.out.println("Game starting soon...");
+        Integer timeLeft = 5;
+        while(timeLeft > 0){
+            System.out.println("Round starting in " + timeLeft + " seconds...");
+            try {
+                Thread.sleep(1000* timeLeft);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            timeLeft--;
+        }
+    }
 
 
+
+    private void startRound() {
+        if( this.actualRound == null ){
+            this.actualRound = new Round();
+            actualRound.setNumber(1);
+        }else{
+            this.roundsHistory.add(this.actualRound);
+
+            Integer newNumber = this.actualRound.getNumber() + 1;
+            this.actualRound = new Round();
+            this.actualRound.setNumber(newNumber);
+        }
     }
 
 }
