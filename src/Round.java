@@ -9,10 +9,12 @@ public class Round {
     private String theme;
     private Map<Integer, Pun> puns;
     private UUID winner;
+    private Integer numberOfVotes;
 
     public Round() {
         this.id = UUID.randomUUID();
         this.puns = new HashMap<>();
+        this.numberOfVotes = 0;
     }
 
     public Round(UUID id, Map<Integer, Pun> puns, UUID winner, Integer number) {
@@ -20,6 +22,7 @@ public class Round {
         this.puns = puns;
         this.winner = winner;
         this.number = number;
+        this.numberOfVotes = 0;
     }
 
     public UUID getId() {
@@ -60,5 +63,17 @@ public class Round {
 
     public void setTheme(String theme) {
         this.theme = theme;
+    }
+
+    public Integer getNumberOfVotes() {
+        return numberOfVotes;
+    }
+
+    public void setNumberOfVotes(Integer numberOfVotes) {
+        this.numberOfVotes = numberOfVotes;
+    }
+
+    public void incrementVotes() {
+        this.setNumberOfVotes(this.getNumberOfVotes() + 1);
     }
 }

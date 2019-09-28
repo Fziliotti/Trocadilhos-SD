@@ -21,6 +21,7 @@ public class Game {
     private List<Round> roundsHistory;
     private long roundBeginTime;
     private Integer pollDurationInSeconds;
+    private long pollBeginTime;
 
     public Game() {
     }
@@ -106,11 +107,11 @@ public class Game {
         showTheme();
         listenPlayersPuns();
         waitListenTime(this.roundDurationInSeconds);
-//        startPoll();
-//        listenPlayersVotes();
-//        waitListenTime(this.pollDurationInSeconds);
-//        showRoundScoreboard();
-//        updatePlayerScore();
+        startPoll();
+        listenPlayersVotes();
+        waitPollListenTime(this.pollDurationInSeconds);
+        showRoundScoreboard();
+        updatePlayerScore();
 
 
     }
@@ -128,12 +129,11 @@ public class Game {
     private void showRoundScoreboard() {
         List<Pun> punList = new ArrayList<>(this.getActualRound().getPuns().values());
         punList.sort(Pun::compareTo);
-        String roundScoreboard = "---------PONTUAÇÃO DA RODADA --------\n";
+        broadcast("---------PONTUAÇÃO DA RODADA --------\n");
         for (int i = 0; i < punList.size(); i++) {
             Pun pun = punList.get(i);
-            roundScoreboard.concat((i + 1) + "º - " + pun.getDescription() + " --- " + pun.getPontuation() + "\n");
+            broadcast((i + 1) + "º - " + pun.getDescription() + " --- " + pun.getPontuation() + "\n");
         }
-        broadcast(roundScoreboard);
     }
 
     private void startPoll() {
@@ -143,12 +143,18 @@ public class Game {
             broadcast(pun.getNumber() + " ----- " + pun.getDescription());
         });
         broadcast("Digite seu voto: ");
+        this.pollBeginTime = System.currentTimeMillis();
     }
 
     private void waitListenTime(Integer seconds) {
-//        while ((System.currentTimeMillis() - this.roundBeginTime)< ((seconds + 5) * 1000)) {
-        while (true) {
+    while ((System.currentTimeMillis() - this.roundBeginTime)< ((seconds + 5) * 1000)) {
             if (this.getActualRound().getPuns().size() == this.playersQuantity)
+                break;
+        }
+    }
+    private void waitPollListenTime(Integer seconds) {
+        while ((System.currentTimeMillis() - this.pollBeginTime)< ((seconds + 5) * 1000)) {
+            if (this.getActualRound().getNumberOfVotes() == this.playersQuantity)
                 break;
         }
     }
@@ -187,8 +193,9 @@ public class Game {
                 System.out.println("Erro = " + ex.getMessage());
                 return "Erro";
             }).thenAccept(str -> {
-                Pun pun = this.getActualRound().getPuns().get(str);
+                Pun pun = this.getActualRound().getPuns().get(Integer.parseInt(str));
                 pun.incrementPontuation();
+                this.actualRound.incrementVotes();
             });
 
         });
