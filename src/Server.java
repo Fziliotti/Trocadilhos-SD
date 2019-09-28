@@ -9,9 +9,10 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 public class Server {
-    private static Integer PLAYERS_QUANTITY = 1;
+    private static Integer PLAYERS_QUANTITY = 2;
     private static Integer ROUND_DURATION_IN_SECONDS = 60;
     private static Integer POINTS_TO_WIN = 120;
+    private static Integer POLL_DURATION_IN_SECONDS = 20;
 
     public static void main(String[] args) {
         Logger log = Logger.getLogger(Server.class.getName());
@@ -33,7 +34,7 @@ public class Server {
             }
 
 
-            Game game = new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList);
+            Game game = new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
 
             game.run();
 
