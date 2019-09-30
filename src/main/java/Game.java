@@ -1,3 +1,8 @@
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +11,8 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-public class Game {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public class Game implements Serializable{
 
     private Integer playersQuantity;
     private Integer roundDurationInSeconds;
@@ -115,10 +121,7 @@ public class Game {
 
     public void run() {
 
-        //readGameBackup();
-
         while (this.actualGameMaxPontuation < this.pointsToWin) {
-            saveGameBackup();
             startRound();
             showScoreboard();
             showTheme();
@@ -134,16 +137,13 @@ public class Game {
 
     }
 
+
+
     private void saveGameBackup() {
         try {
-            File arquivo = new File("backup.txt");
-            FileWriter fw = new FileWriter(arquivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-
-//            bw.write(this.to);
-            bw.flush();
-            bw.close();
-            System.out.println("concluido");
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            mapper.writeValue(new File("backup.json"), this);
         }catch (IOException exception){
             exception.printStackTrace();
         }
@@ -329,4 +329,16 @@ public class Game {
 
     }
 
+    public Game(Integer playersQuantity, Integer roundDurationInSeconds, Integer pointsToWin, List<Player> players, Round actualRound, List<Round> roundsHistory, long roundBeginTime, Integer pollDurationInSeconds, long pollBeginTime, Integer actualGameMaxPontuation) {
+        this.playersQuantity = playersQuantity;
+        this.roundDurationInSeconds = roundDurationInSeconds;
+        this.pointsToWin = pointsToWin;
+        this.players = players;
+        this.actualRound = actualRound;
+        this.roundsHistory = roundsHistory;
+        this.roundBeginTime = roundBeginTime;
+        this.pollDurationInSeconds = pollDurationInSeconds;
+        this.pollBeginTime = pollBeginTime;
+        this.actualGameMaxPontuation = 0;
+    }
 }

@@ -1,5 +1,6 @@
-import java.io.IOException;
-import java.io.PrintStream;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class Server {
             }
 
 
-            Game game = new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
+            Game game = Server.getBackupOrNewGame(playerList);
 
             game.run();
 
@@ -46,6 +47,30 @@ public class Server {
 
         } catch (IOException ex) {
             log.info("Erro de conexão");
+        }
+    }
+
+
+    private static Game getBackupOrNewGame(List<Player> playerList) {
+        try {
+            File arquivo = new File("backup.json");
+            FileReader fw = new FileReader(arquivo);
+            BufferedReader br = new BufferedReader(fw);
+            StringBuilder json = new StringBuilder();
+            while(br.ready()){
+                json.append(br.readLine());
+            }
+            br.close();
+            ObjectMapper mapper = new ObjectMapper();
+
+            if(!String.valueOf(json).equals("")){
+                return mapper.readValue(String.valueOf(json), Game.class);
+            }
+            return new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
+
+        }catch (IOException exception){
+            exception.printStackTrace();
+            return new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
         }
     }
 
