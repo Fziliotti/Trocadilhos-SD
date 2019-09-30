@@ -1,15 +1,10 @@
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.time.LocalDateTime;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.*;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-
-import static java.time.LocalDateTime.now;
 
 public class Game {
 
@@ -22,6 +17,7 @@ public class Game {
     private long roundBeginTime;
     private Integer pollDurationInSeconds;
     private long pollBeginTime;
+    private Integer actualGameMaxPontuation;
 
     public Game() {
     }
@@ -34,6 +30,7 @@ public class Game {
         this.actualRound = null;
         this.roundsHistory = new ArrayList<>();
         this.pollDurationInSeconds = pollDurationInSeconds;
+        this.actualGameMaxPontuation = 0;
     }
 
     public List<Player> getPlayers() {
@@ -100,20 +97,56 @@ public class Game {
         this.pollDurationInSeconds = pollDurationInSeconds;
     }
 
+    public long getPollBeginTime() {
+        return pollBeginTime;
+    }
+
+    public void setPollBeginTime(long pollBeginTime) {
+        this.pollBeginTime = pollBeginTime;
+    }
+
+    public Integer getActualGameMaxPontuation() {
+        return actualGameMaxPontuation;
+    }
+
+    public void setActualGameMaxPontuation(Integer actualGameMaxPontuation) {
+        this.actualGameMaxPontuation = actualGameMaxPontuation;
+    }
+
     public void run() {
 
-        startRound();
-        showScoreboard();
-        showTheme();
-        listenPlayersPuns();
-        waitListenTime(this.roundDurationInSeconds);
-        startPoll();
-        listenPlayersVotes();
-        waitPollListenTime(this.pollDurationInSeconds);
-        showRoundScoreboard();
-        updatePlayerScore();
+        //readGameBackup();
 
+        while (this.actualGameMaxPontuation < this.pointsToWin) {
+            saveGameBackup();
+            startRound();
+            showScoreboard();
+            showTheme();
+            listenPlayersPuns();
+            waitListenTime(this.roundDurationInSeconds);
+            startPoll();
+            listenPlayersVotes();
+            waitPollListenTime(this.pollDurationInSeconds);
+            showRoundScoreboard();
+            updatePlayerScore();
+            saveGameBackup();
+        }
 
+    }
+
+    private void saveGameBackup() {
+        try {
+            File arquivo = new File("backup.txt");
+            FileWriter fw = new FileWriter(arquivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+//            bw.write(this.to);
+            bw.flush();
+            bw.close();
+            System.out.println("concluido");
+        }catch (IOException exception){
+            exception.printStackTrace();
+        }
     }
 
     private void updatePlayerScore() {
@@ -129,6 +162,7 @@ public class Game {
     private void showRoundScoreboard() {
         List<Pun> punList = new ArrayList<>(this.getActualRound().getPuns().values());
         punList.sort(Pun::compareTo);
+        setMaxPontuation(punList);
         broadcast("---------PONTUAÇÃO DA RODADA --------\n");
         for (int i = 0; i < punList.size(); i++) {
             Pun pun = punList.get(i);
@@ -136,24 +170,44 @@ public class Game {
         }
     }
 
+    private void setMaxPontuation(List<Pun> punList) {
+        Integer scoreboardMaxPontuation = 0;
+        if (punList.get(0) != null) scoreboardMaxPontuation = punList.get(0).getPontuation();
+        if (scoreboardMaxPontuation > this.actualGameMaxPontuation) {
+            this.setActualGameMaxPontuation(scoreboardMaxPontuation);
+        }
+    }
+
     private void startPoll() {
         broadcast("---------------------HORA DA VOTAÇÃO -------------------");
         broadcast("-------VOTE DE ACORDO COM O NÚMERO DO TROCADILHO -------");
         this.getActualRound().getPuns().forEach((uuid, pun) -> {
-            broadcast(pun.getNumber() + " ----- " + pun.getDescription());
+            String message = pun.getNumber() + " ----- " + pun.getDescription();
+            broadcastPoll(message, pun.getPlayerId());
         });
         broadcast("Digite seu voto: ");
         this.pollBeginTime = System.currentTimeMillis();
     }
 
     private void waitListenTime(Integer seconds) {
-    while ((System.currentTimeMillis() - this.roundBeginTime)< ((seconds + 5) * 1000)) {
+        while ((System.currentTimeMillis() - this.roundBeginTime) < ((seconds + 5) * 1000)) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (this.getActualRound().getPuns().size() == this.playersQuantity)
                 break;
         }
     }
+
     private void waitPollListenTime(Integer seconds) {
-        while ((System.currentTimeMillis() - this.pollBeginTime)< ((seconds + 5) * 1000)) {
+        while ((System.currentTimeMillis() - this.pollBeginTime) < ((seconds + 5) * 1000)) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (this.getActualRound().getNumberOfVotes() == this.playersQuantity)
                 break;
         }
@@ -253,12 +307,26 @@ public class Game {
     private void broadcast(String message) {
         this.players.forEach(player -> {
             try {
-                PrintStream saida = new PrintStream(player.getPlayerSocket().getOutputStream());
-                saida.println(message);
+                PrintStream output = new PrintStream(player.getPlayerSocket().getOutputStream());
+                output.println(message);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void broadcastPoll(String message, UUID playerUUID) {
+
+        List<Player> otherPlayers = this.players.stream().filter(player -> player.getId() != playerUUID).collect(Collectors.toList());
+        otherPlayers.forEach(player -> {
+            try {
+                PrintStream output = new PrintStream(player.getPlayerSocket().getOutputStream());
+                output.println(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
 }

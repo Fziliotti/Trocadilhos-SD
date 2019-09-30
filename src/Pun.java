@@ -61,6 +61,6 @@ public class Pun {
     }
 
     public int compareTo(Pun other) {
-        return this.pontuation.compareTo(other.getPontuation());
+        return other.getPontuation().compareTo(this.pontuation);
     }
 }

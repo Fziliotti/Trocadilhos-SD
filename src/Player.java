@@ -61,7 +61,7 @@ public class Player {
     }
 
     public int compareTo(Player other){
-        return this.getScore().compareTo(other.getScore());
+        return other.getScore().compareTo(this.getScore());
     }
 
     public void incrementScore (Integer amount){
