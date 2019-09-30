@@ -42,9 +42,12 @@ public class Server {
 				saida.println("Digite seu nickname: ");
 				String playerName = entrada.nextLine();
 				totalPlayersOn = totalPlayersOn + 1;
-				saida.println("\nOlá " + playerName + "! "
-						+ "Seja bem vindo ao jogo de Trocadilhos. Aguarde a entrada de mais jogadores =)\nTotal: "
-						+ totalPlayersOn + " de " + PLAYERS_QUANTITY);
+				saida.println("\nOlá " + playerName + "! " + "Seja bem vindo ao jogo de Trocadilhos.");
+				if (totalPlayersOn < PLAYERS_QUANTITY) {
+					saida.println("Aguarde a entrada de mais jogadores =)\nTotal: " + totalPlayersOn + " de "
+							+ PLAYERS_QUANTITY);
+				}
+
 				playerList.add(new Player(UUID.randomUUID(), playerName, client));
 
 			}
