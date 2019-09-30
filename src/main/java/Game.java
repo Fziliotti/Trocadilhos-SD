@@ -1,7 +1,9 @@
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Game implements Serializable{
 
     private Integer playersQuantity;
@@ -142,8 +144,9 @@ public class Game implements Serializable{
     private void saveGameBackup() {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
             mapper.writeValue(new File("backup.json"), this);
+
         }catch (IOException exception){
             exception.printStackTrace();
         }

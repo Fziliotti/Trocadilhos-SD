@@ -1,8 +1,9 @@
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 public class Player {
 
     private UUID id;
@@ -11,6 +12,9 @@ public class Player {
     private List<Pun> puns;
     private Socket playerSocket;
 
+
+    public Player() {
+    }
 
     public Player(UUID id, String name, Socket playerSocket) {
         this.id = id;

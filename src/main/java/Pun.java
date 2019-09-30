@@ -8,6 +8,9 @@ public class Pun {
     private Integer number;
     private UUID playerId;
 
+    public Pun() {
+    }
+
     public Pun(String description, Integer number, UUID playerId) {
         this.id = UUID.randomUUID();
         this.description = description;
