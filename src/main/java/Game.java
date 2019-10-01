@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -26,7 +23,9 @@ public class Game implements Serializable{
     private Integer pollDurationInSeconds;
     private long pollBeginTime;
     private Integer actualGameMaxPontuation;
-
+    private List<String> themes = Arrays.asList("Animais", "Celebridades", "Cinema", "Comida", "Desenho", "Futebol",
+            "Heróis", "Música", "Saude", "Casa", "Mouse", "Notebook", "Camiseta", "Nascer", "Blusa", "Relógio", "Cabeça",
+            "Cabelo", "Celular", "Piazza");
     public Game() {
     }
 
@@ -218,10 +217,27 @@ public class Game implements Serializable{
 
 
     private void showTheme() {
-        actualRound.setTheme("Exemplo");
+        actualRound.setTheme(getRandomTheme(getThemes()));
         broadcast("Tema: " + actualRound.getTheme());
         broadcast("Escreva seu trocadilho: ");
         this.roundBeginTime = System.currentTimeMillis();
+    }
+
+    static String getRandomTheme(List themes) {
+        Random random = new Random();
+        List<String> givenThemeList = themes;
+        String randomTheme = "";
+
+        for (int i = 0; i < themes.size(); i++) {
+            int randomIndex = random.nextInt(givenThemeList.size());
+            randomTheme = givenThemeList.get(randomIndex);
+        }
+
+        return randomTheme;
+    }
+
+    public List<String> getThemes() {
+        return themes;
     }
 
     private void listenPlayersPuns() {
