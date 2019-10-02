@@ -243,7 +243,7 @@ public class Game implements Serializable{
     private void listenPlayersPuns() {
         this.getPlayers().forEach(player -> {
             final CompletableFuture<String> c1 = new CompletableFuture<>();
-            createListenThreads(player, c1);
+            createListenPunThreads(player, c1);
 
             c1.exceptionally(ex -> {
                 System.out.println("Erro = " + ex.getMessage());
@@ -260,7 +260,7 @@ public class Game implements Serializable{
     private void listenPlayersVotes() {
         this.getPlayers().forEach(player -> {
             final CompletableFuture<String> c1 = new CompletableFuture<>();
-            createListenThreads(player, c1);
+            createListenPollThreads(player, c1);
 
             c1.exceptionally(ex -> {
                 System.out.println("Erro = " + ex.getMessage());
@@ -274,18 +274,54 @@ public class Game implements Serializable{
         });
     }
 
-    private void createListenThreads(Player player, CompletableFuture<String> c1) {
+    private void createListenPunThreads(Player player, CompletableFuture<String> c1) {
         new Thread(() -> {
             try {
                 Scanner entrada = new Scanner(player.getPlayerSocket().getInputStream());
-                if (entrada.hasNextLine()) {
+                while (entrada.hasNextLine()) {
                     String message = entrada.nextLine();
-                    c1.complete(message);
+                    if (message.length() < 140 && !message.isEmpty()) {
+                        c1.complete(message);
+                        break;
+                    }
+                    else{
+                        sendMessageToPlayer("O trocadilho deve ter até 140 caracteres", player);
+                    }
                 }
             } catch (Exception ex) {
                 c1.completeExceptionally(ex);
             }
         }).start();
+    }
+    private void createListenPollThreads(Player player, CompletableFuture<String> c1) {
+        new Thread(() -> {
+            try {
+                Scanner entrada = new Scanner(player.getPlayerSocket().getInputStream());
+                while (entrada.hasNextLine()) {
+                    String message = entrada.nextLine();
+                    Integer intMessage = Integer.parseInt(entrada.nextLine());
+                    Integer punNumber = this.getActualRound().getPuns().size() + 1;
+                    if(intMessage < punNumber && intMessage > 0  ) {
+                        c1.complete(message);
+                        break;
+                    }
+                    else{
+                        sendMessageToPlayer("Número inválido, vote em um dos números acima", player);
+                    }
+                }
+            } catch (Exception ex) {
+                c1.completeExceptionally(ex);
+            }
+        }).start();
+    }
+
+    private void sendMessageToPlayer(String message, Player player) {
+        try {
+            PrintStream output = new PrintStream(player.getPlayerSocket().getOutputStream());
+            output.println(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
