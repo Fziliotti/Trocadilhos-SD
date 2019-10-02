@@ -8,6 +8,13 @@ Será desenvolvido um jogo de trocadilhos reunindo vários jogadores. O jogo ser
 
 <hr>
 
+## REQUISITOS DO PROJETO
+
+- Java instalado na máquina;
+- Versão do JDK igual a 8.0 ou superior;
+
+<hr>
+
 ## Funcionamento do jogo:
 
 1. Abra o projeto em sua IDE;
