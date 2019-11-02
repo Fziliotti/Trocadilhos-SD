@@ -25,10 +25,10 @@ message APIResponse {
 
 
 service TrocadilhosGame {
-    rpc Trocadilho(TrocadilhoRequest) returns (APIResponse);
+    rpc sendTrocadilho(TrocadilhoRequest) returns (APIResponse);
 }
 
 service User {
-    rpc Login(LoginRequest) returns (APIResponse);
-    rpc Logout(LogoutRequest) returns (APIResponse);
+    rpc login(LoginRequest) returns (APIResponse);
+    rpc logout(LogoutRequest) returns (APIResponse);
 }
