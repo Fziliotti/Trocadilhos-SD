@@ -19,7 +19,7 @@ Será desenvolvido um jogo de trocadilhos reunindo vários jogadores. O jogo ser
 
 1. Abra o projeto em sua IDE;
 2. Importe-o como um projeto Maven e instale as depêndencias;
-3. Depois execute o arquivo Server.java referente ao Servidor da aplicação;
+3. Depois execute o arquivo trocadilhos.grpc.Server.java referente ao Servidor da aplicação;
 4. Após isso, rode 2 ou mais clientes (Dependendo do número de jogadores no round);
 5. Será pedido que os jogadores digitem o nome e esperar que o número de jogares do round façam isso;
 6. Após todos os jogadores passarem da etapa anterior, agora todos devem fazem o trocadilho referente ao tema gerado aleatóriamente;

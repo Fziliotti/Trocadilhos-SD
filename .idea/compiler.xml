@@ -9,6 +9,7 @@
         <module name="trocadilhos-socket" />
         <module name="TrocadilhoSD" />
         <module name="Trocadilho-SD" />
+        <module name="Trocadilhos-SD" />
       </profile>
     </annotationProcessing>
   </component>

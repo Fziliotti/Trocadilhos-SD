@@ -1,0 +1,34 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package trocadilhos.grpc;
+
+message TrocadilhoRequest {
+    string description = 1;
+}
+
+message HelloResponse {
+    string greeting = 1;
+}
+
+message LoginRequest {
+    string nickname = 1;
+}
+
+message LogoutRequest {
+    string nickname = 1;
+}
+
+message APIResponse {
+    string message = 1;
+    string code = 2;
+}
+
+
+service TrocadilhosGame {
+    rpc Trocadilho(TrocadilhoRequest) returns (APIResponse);
+}
+
+service User {
+    rpc Login(LoginRequest) returns (APIResponse);
+    rpc Logout(LogoutRequest) returns (APIResponse);
+}
