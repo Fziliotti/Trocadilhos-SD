@@ -1,9 +1,9 @@
 package trocadilhos.grpc.server;
 
-import trocadilhos.grpc.*;
 import io.grpc.stub.StreamObserver;
-
-import java.util.List;
+import trocadilhos.grpc.APIResponse;
+import trocadilhos.grpc.TrocadilhoRequest;
+import trocadilhos.grpc.TrocadilhosGameGrpc;
 
 public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImplBase {
 

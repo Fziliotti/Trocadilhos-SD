@@ -1,13 +1,9 @@
 package trocadilhos.grpc.server;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
-
-import com.google.common.collect.Sets;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.ServerServiceDefinition;
+
+import java.io.IOException;
 
 public class GrpcServer {
 
