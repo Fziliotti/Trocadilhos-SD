@@ -8,31 +8,30 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class Server {
-    private static Integer PLAYERS_QUANTITY = 2;
-    private static Integer ROUND_DURATION_IN_SECONDS = 60;
-    private static Integer POINTS_TO_WIN = 120;
-    private static Integer POLL_DURATION_IN_SECONDS = 20;
+    private static Integer MAX_PLAYERS;
+    private static Integer ROUND_DURATION_IN_SECONDS;
+    private static Integer POINTS_TO_WIN;
+    private static Integer POLL_DURATION_IN_SECONDS;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Logger log = Logger.getLogger(Server.class.getName());
-
+        getServerValuesFromProperties();
 
         try {
             ServerSocket server = new ServerSocket(12345);
             log.info("Servidor iniciado na porta 12345");
             List<Player> playerList = new ArrayList<>();
 
-            while (playerList.size() < PLAYERS_QUANTITY) {
+            while (playerList.size() < MAX_PLAYERS) {
                 Socket client = server.accept();
-                PrintStream saida = new PrintStream(client.getOutputStream());
-                Scanner entrada = new Scanner(client.getInputStream());
-                saida.println("Digite seu nickname: ");
-                String playerName = entrada.nextLine();
-                saida.println("Aguarde a entrada de mais jogadores =)");
+                PrintStream out = new PrintStream(client.getOutputStream());
+                Scanner in = new Scanner(client.getInputStream());
+                out.println("Digite seu nickname: ");
+                String playerName = in.nextLine();
+                out.println("Aguarde a entrada de mais jogadores =)");
                 playerList.add(new Player(UUID.randomUUID(), playerName, client));
 
             }
-
 
             Game game = Server.getBackupOrNewGame(playerList);
 
@@ -46,6 +45,21 @@ public class Server {
         } catch (IOException ex) {
             log.info("Erro de conexão");
         }
+    }
+
+    private static void getServerValuesFromProperties() throws IOException {
+        Properties properties = getProperties();
+        MAX_PLAYERS = Integer.parseInt(properties.getProperty("max-players"));
+        ROUND_DURATION_IN_SECONDS = Integer.parseInt(properties.getProperty("round-duration-in-seconds"));
+        POLL_DURATION_IN_SECONDS = Integer.parseInt(properties.getProperty("poll-duration-in-seconds"));
+        POINTS_TO_WIN = Integer.parseInt(properties.getProperty("points-to-win"));
+    }
+
+    public static Properties getProperties() throws IOException {
+        Properties props = new Properties();
+        FileInputStream file = new FileInputStream("src/main/application.properties");
+        props.load(file);
+        return props;
     }
 
 
@@ -66,11 +80,11 @@ public class Server {
                 setGamePlayerList(playerList, game);
                 return game;
             }
-            return new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
+            return new Game(MAX_PLAYERS, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
 
         }catch (IOException exception){
             exception.printStackTrace();
-            return new Game(PLAYERS_QUANTITY, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
+            return new Game(MAX_PLAYERS, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
         }
     }
 
