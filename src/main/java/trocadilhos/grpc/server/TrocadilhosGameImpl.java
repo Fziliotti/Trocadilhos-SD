@@ -8,8 +8,7 @@ import trocadilhos.grpc.TrocadilhosGameGrpc;
 public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImplBase {
 
     @Override
-    public void trocadilho(
-            TrocadilhoRequest request, StreamObserver<APIResponse> responseObserver) {
+    public void trocadilho(TrocadilhoRequest request, StreamObserver<APIResponse> responseObserver) {
         System.out.println("Request received from client:\n" + request.getDescription());
 
         String nickname = request.getDescription();
