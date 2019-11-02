@@ -33,7 +33,7 @@ public final class UserGrpc {
       io.grpc.MethodDescriptor.<trocadilhos.grpc.LoginRequest, trocadilhos.grpc.APIResponse>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
-              "trocadilhos.grpc.User", "Login"))
+              "trocadilhos.grpc.User", "login"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               trocadilhos.grpc.LoginRequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -45,7 +45,7 @@ public final class UserGrpc {
       io.grpc.MethodDescriptor.<trocadilhos.grpc.LogoutRequest, trocadilhos.grpc.APIResponse>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
-              "trocadilhos.grpc.User", "Logout"))
+              "trocadilhos.grpc.User", "logout"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               trocadilhos.grpc.LogoutRequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(

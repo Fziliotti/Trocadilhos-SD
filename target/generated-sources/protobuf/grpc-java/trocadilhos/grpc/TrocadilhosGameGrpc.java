@@ -29,11 +29,11 @@ public final class TrocadilhosGameGrpc {
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<trocadilhos.grpc.TrocadilhoRequest,
-      trocadilhos.grpc.APIResponse> METHOD_TROCADILHO =
+      trocadilhos.grpc.APIResponse> METHOD_SEND_TROCADILHO =
       io.grpc.MethodDescriptor.<trocadilhos.grpc.TrocadilhoRequest, trocadilhos.grpc.APIResponse>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
-              "trocadilhos.grpc.TrocadilhosGame", "Trocadilho"))
+              "trocadilhos.grpc.TrocadilhosGame", "sendTrocadilho"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               trocadilhos.grpc.TrocadilhoRequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -69,20 +69,20 @@ public final class TrocadilhosGameGrpc {
 
     /**
      */
-    public void trocadilho(trocadilhos.grpc.TrocadilhoRequest request,
+    public void sendTrocadilho(trocadilhos.grpc.TrocadilhoRequest request,
         io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_TROCADILHO, responseObserver);
+      asyncUnimplementedUnaryCall(METHOD_SEND_TROCADILHO, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            METHOD_TROCADILHO,
+            METHOD_SEND_TROCADILHO,
             asyncUnaryCall(
               new MethodHandlers<
                 trocadilhos.grpc.TrocadilhoRequest,
                 trocadilhos.grpc.APIResponse>(
-                  this, METHODID_TROCADILHO)))
+                  this, METHODID_SEND_TROCADILHO)))
           .build();
     }
   }
@@ -107,10 +107,10 @@ public final class TrocadilhosGameGrpc {
 
     /**
      */
-    public void trocadilho(trocadilhos.grpc.TrocadilhoRequest request,
+    public void sendTrocadilho(trocadilhos.grpc.TrocadilhoRequest request,
         io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_TROCADILHO, getCallOptions()), request, responseObserver);
+          getChannel().newCall(METHOD_SEND_TROCADILHO, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -134,9 +134,9 @@ public final class TrocadilhosGameGrpc {
 
     /**
      */
-    public trocadilhos.grpc.APIResponse trocadilho(trocadilhos.grpc.TrocadilhoRequest request) {
+    public trocadilhos.grpc.APIResponse sendTrocadilho(trocadilhos.grpc.TrocadilhoRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_TROCADILHO, getCallOptions(), request);
+          getChannel(), METHOD_SEND_TROCADILHO, getCallOptions(), request);
     }
   }
 
@@ -160,14 +160,14 @@ public final class TrocadilhosGameGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<trocadilhos.grpc.APIResponse> trocadilho(
+    public com.google.common.util.concurrent.ListenableFuture<trocadilhos.grpc.APIResponse> sendTrocadilho(
         trocadilhos.grpc.TrocadilhoRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_TROCADILHO, getCallOptions()), request);
+          getChannel().newCall(METHOD_SEND_TROCADILHO, getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_TROCADILHO = 0;
+  private static final int METHODID_SEND_TROCADILHO = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -186,8 +186,8 @@ public final class TrocadilhosGameGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_TROCADILHO:
-          serviceImpl.trocadilho((trocadilhos.grpc.TrocadilhoRequest) request,
+        case METHODID_SEND_TROCADILHO:
+          serviceImpl.sendTrocadilho((trocadilhos.grpc.TrocadilhoRequest) request,
               (io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse>) responseObserver);
           break;
         default:
@@ -223,7 +223,7 @@ public final class TrocadilhosGameGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new TrocadilhosGameDescriptorSupplier())
-              .addMethod(METHOD_TROCADILHO)
+              .addMethod(METHOD_SEND_TROCADILHO)
               .build();
         }
       }

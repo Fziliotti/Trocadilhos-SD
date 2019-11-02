@@ -16,7 +16,7 @@ public class Client {
         TrocadilhosGameGrpc.TrocadilhosGameBlockingStub stub
                 = TrocadilhosGameGrpc.newBlockingStub(channel);
 
-        APIResponse apiResponse = stub.trocadilho(TrocadilhoRequest.newBuilder()
+        APIResponse apiResponse = stub.sendTrocadilho(TrocadilhoRequest.newBuilder()
                 .setDescription("Opa opa chico chico")
                 .build());
 
