@@ -18,17 +18,25 @@ message LogoutRequest {
     string nickname = 1;
 }
 
+message LoginResponse {
+    string message = 1;
+    string code = 2;
+}
 message APIResponse {
     string message = 1;
     string code = 2;
 }
 
-
-service TrocadilhosGame {
-    rpc sendTrocadilho(TrocadilhoRequest) returns (APIResponse);
+message ServerDetailsRequest {
 }
 
-service User {
-    rpc login(LoginRequest) returns (APIResponse);
-    rpc logout(LogoutRequest) returns (APIResponse);
+message ServerDetailsResponse {
+    string playersList = 1;
+}
+
+
+service TrocadilhosGame {
+    rpc sendTrocadilho (TrocadilhoRequest) returns (APIResponse);
+    rpc login (LoginRequest) returns (LoginResponse);
+    rpc logout (LogoutRequest) returns (APIResponse);
 }

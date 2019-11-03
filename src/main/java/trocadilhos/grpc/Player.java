@@ -1,5 +1,7 @@
 package trocadilhos.grpc;
 
+import io.grpc.stub.StreamObserver;
+
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +12,16 @@ public class Player {
     private String name;
     private Integer score;
     private List<Pun> puns;
-    private Socket playerSocket;
+    private StreamObserver<APIResponse> responseObserver;
 
 
     public Player() {
     }
 
-    public Player(UUID id, String name, Socket playerSocket) {
+    public Player(UUID id, String name, Socket playerSocket, StreamObserver<APIResponse> responseObserver) {
         this.id = id;
         this.name = name;
-        this.playerSocket = playerSocket;
+        this.responseObserver = responseObserver;
         this.score = 0;
         this.puns = new ArrayList<>();
     }
@@ -54,14 +56,6 @@ public class Player {
 
     public void setPuns(List<Pun> puns) {
         this.puns = puns;
-    }
-
-    public Socket getPlayerSocket() {
-        return playerSocket;
-    }
-
-    public void setPlayerSocket(Socket playerSocket) {
-        this.playerSocket = playerSocket;
     }
 
     public int compareTo(Player other){

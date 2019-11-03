@@ -39,6 +39,30 @@ public final class TrocadilhosGameGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               trocadilhos.grpc.APIResponse.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<trocadilhos.grpc.LoginRequest,
+      trocadilhos.grpc.LoginResponse> METHOD_LOGIN =
+      io.grpc.MethodDescriptor.<trocadilhos.grpc.LoginRequest, trocadilhos.grpc.LoginResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "trocadilhos.grpc.TrocadilhosGame", "login"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              trocadilhos.grpc.LoginRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              trocadilhos.grpc.LoginResponse.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<trocadilhos.grpc.LogoutRequest,
+      trocadilhos.grpc.APIResponse> METHOD_LOGOUT =
+      io.grpc.MethodDescriptor.<trocadilhos.grpc.LogoutRequest, trocadilhos.grpc.APIResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "trocadilhos.grpc.TrocadilhosGame", "logout"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              trocadilhos.grpc.LogoutRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              trocadilhos.grpc.APIResponse.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -74,6 +98,20 @@ public final class TrocadilhosGameGrpc {
       asyncUnimplementedUnaryCall(METHOD_SEND_TROCADILHO, responseObserver);
     }
 
+    /**
+     */
+    public void login(trocadilhos.grpc.LoginRequest request,
+        io.grpc.stub.StreamObserver<trocadilhos.grpc.LoginResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LOGIN, responseObserver);
+    }
+
+    /**
+     */
+    public void logout(trocadilhos.grpc.LogoutRequest request,
+        io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LOGOUT, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -83,6 +121,20 @@ public final class TrocadilhosGameGrpc {
                 trocadilhos.grpc.TrocadilhoRequest,
                 trocadilhos.grpc.APIResponse>(
                   this, METHODID_SEND_TROCADILHO)))
+          .addMethod(
+            METHOD_LOGIN,
+            asyncUnaryCall(
+              new MethodHandlers<
+                trocadilhos.grpc.LoginRequest,
+                trocadilhos.grpc.LoginResponse>(
+                  this, METHODID_LOGIN)))
+          .addMethod(
+            METHOD_LOGOUT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                trocadilhos.grpc.LogoutRequest,
+                trocadilhos.grpc.APIResponse>(
+                  this, METHODID_LOGOUT)))
           .build();
     }
   }
@@ -112,6 +164,22 @@ public final class TrocadilhosGameGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_SEND_TROCADILHO, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void login(trocadilhos.grpc.LoginRequest request,
+        io.grpc.stub.StreamObserver<trocadilhos.grpc.LoginResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LOGIN, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void logout(trocadilhos.grpc.LogoutRequest request,
+        io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LOGOUT, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -137,6 +205,20 @@ public final class TrocadilhosGameGrpc {
     public trocadilhos.grpc.APIResponse sendTrocadilho(trocadilhos.grpc.TrocadilhoRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_SEND_TROCADILHO, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public trocadilhos.grpc.LoginResponse login(trocadilhos.grpc.LoginRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LOGIN, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public trocadilhos.grpc.APIResponse logout(trocadilhos.grpc.LogoutRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LOGOUT, getCallOptions(), request);
     }
   }
 
@@ -165,9 +247,27 @@ public final class TrocadilhosGameGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_SEND_TROCADILHO, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<trocadilhos.grpc.LoginResponse> login(
+        trocadilhos.grpc.LoginRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LOGIN, getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<trocadilhos.grpc.APIResponse> logout(
+        trocadilhos.grpc.LogoutRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LOGOUT, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEND_TROCADILHO = 0;
+  private static final int METHODID_LOGIN = 1;
+  private static final int METHODID_LOGOUT = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -188,6 +288,14 @@ public final class TrocadilhosGameGrpc {
       switch (methodId) {
         case METHODID_SEND_TROCADILHO:
           serviceImpl.sendTrocadilho((trocadilhos.grpc.TrocadilhoRequest) request,
+              (io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse>) responseObserver);
+          break;
+        case METHODID_LOGIN:
+          serviceImpl.login((trocadilhos.grpc.LoginRequest) request,
+              (io.grpc.stub.StreamObserver<trocadilhos.grpc.LoginResponse>) responseObserver);
+          break;
+        case METHODID_LOGOUT:
+          serviceImpl.logout((trocadilhos.grpc.LogoutRequest) request,
               (io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse>) responseObserver);
           break;
         default:
@@ -224,6 +332,8 @@ public final class TrocadilhosGameGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new TrocadilhosGameDescriptorSupplier())
               .addMethod(METHOD_SEND_TROCADILHO)
+              .addMethod(METHOD_LOGIN)
+              .addMethod(METHOD_LOGOUT)
               .build();
         }
       }

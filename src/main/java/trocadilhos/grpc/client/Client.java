@@ -2,11 +2,14 @@ package trocadilhos.grpc.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import trocadilhos.grpc.APIResponse;
-import trocadilhos.grpc.TrocadilhoRequest;
-import trocadilhos.grpc.TrocadilhosGameGrpc;
+import io.grpc.StatusRuntimeException;
+import trocadilhos.grpc.*;
+
+import java.util.Scanner;
 
 public class Client {
+
+    private Boolean loggined = false;
 
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080)
@@ -16,11 +19,15 @@ public class Client {
         TrocadilhosGameGrpc.TrocadilhosGameBlockingStub stub
                 = TrocadilhosGameGrpc.newBlockingStub(channel);
 
-        APIResponse apiResponse = stub.sendTrocadilho(TrocadilhoRequest.newBuilder()
-                .setDescription("Opa opa chico chico")
+        Scanner sc = new Scanner(System.in);
+        String nickname = sc.nextLine();
+        System.out.println("Digite seu nickname: ");
+        LoginResponse loginResponse = stub.login(LoginRequest.newBuilder()
+                .setNickname(nickname)
                 .build());
 
-        System.out.println(apiResponse);
+
+        System.out.println(loginResponse);
         channel.shutdown();
     }
 }

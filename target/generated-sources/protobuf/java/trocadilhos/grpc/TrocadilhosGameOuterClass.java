@@ -35,10 +35,25 @@ public final class TrocadilhosGameOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_trocadilhos_grpc_LogoutRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_trocadilhos_grpc_LoginResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_trocadilhos_grpc_LoginResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_trocadilhos_grpc_APIResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_trocadilhos_grpc_APIResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_trocadilhos_grpc_ServerDetailsRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_trocadilhos_grpc_ServerDetailsRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_trocadilhos_grpc_ServerDetailsResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_trocadilhos_grpc_ServerDetailsResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -52,15 +67,18 @@ public final class TrocadilhosGameOuterClass {
       "c\"(\n\021TrocadilhoRequest\022\023\n\013description\030\001 " +
       "\001(\t\"!\n\rHelloResponse\022\020\n\010greeting\030\001 \001(\t\" " +
       "\n\014LoginRequest\022\020\n\010nickname\030\001 \001(\t\"!\n\rLogo" +
-      "utRequest\022\020\n\010nickname\030\001 \001(\t\",\n\013APIRespon" +
-      "se\022\017\n\007message\030\001 \001(\t\022\014\n\004code\030\002 \001(\t2g\n\017Tro" +
-      "cadilhosGame\022T\n\016sendTrocadilho\022#.trocadi" +
-      "lhos.grpc.TrocadilhoRequest\032\035.trocadilho" +
-      "s.grpc.APIResponse2\230\001\n\004User\022F\n\005login\022\036.t" +
-      "rocadilhos.grpc.LoginRequest\032\035.trocadilh",
-      "os.grpc.APIResponse\022H\n\006logout\022\037.trocadil" +
-      "hos.grpc.LogoutRequest\032\035.trocadilhos.grp" +
-      "c.APIResponseB\002P\001b\006proto3"
+      "utRequest\022\020\n\010nickname\030\001 \001(\t\".\n\rLoginResp" +
+      "onse\022\017\n\007message\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\",\n\013A" +
+      "PIResponse\022\017\n\007message\030\001 \001(\t\022\014\n\004code\030\002 \001(" +
+      "\t\"\026\n\024ServerDetailsRequest\",\n\025ServerDetai" +
+      "lsResponse\022\023\n\013playersList\030\001 \001(\t2\373\001\n\017Troc" +
+      "adilhosGame\022T\n\016sendTrocadilho\022#.trocadil",
+      "hos.grpc.TrocadilhoRequest\032\035.trocadilhos" +
+      ".grpc.APIResponse\022H\n\005login\022\036.trocadilhos" +
+      ".grpc.LoginRequest\032\037.trocadilhos.grpc.Lo" +
+      "ginResponse\022H\n\006logout\022\037.trocadilhos.grpc" +
+      ".LogoutRequest\032\035.trocadilhos.grpc.APIRes" +
+      "ponseB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -98,12 +116,30 @@ public final class TrocadilhosGameOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_trocadilhos_grpc_LogoutRequest_descriptor,
         new java.lang.String[] { "Nickname", });
-    internal_static_trocadilhos_grpc_APIResponse_descriptor =
+    internal_static_trocadilhos_grpc_LoginResponse_descriptor =
       getDescriptor().getMessageTypes().get(4);
+    internal_static_trocadilhos_grpc_LoginResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_trocadilhos_grpc_LoginResponse_descriptor,
+        new java.lang.String[] { "Message", "Code", });
+    internal_static_trocadilhos_grpc_APIResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_trocadilhos_grpc_APIResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_trocadilhos_grpc_APIResponse_descriptor,
         new java.lang.String[] { "Message", "Code", });
+    internal_static_trocadilhos_grpc_ServerDetailsRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_trocadilhos_grpc_ServerDetailsRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_trocadilhos_grpc_ServerDetailsRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_trocadilhos_grpc_ServerDetailsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_trocadilhos_grpc_ServerDetailsResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_trocadilhos_grpc_ServerDetailsResponse_descriptor,
+        new java.lang.String[] { "PlayersList", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
