@@ -36,9 +36,14 @@ message LoginToMasterResponse {
     string port = 2;
 }
 
+message APIRequest {
+    string message = 1;
+    string from = 2;
+}
 message APIResponse {
     string message = 1;
-    string code = 2;
+    string from = 2;
+    string type = 3;
 }
 
 message ServerDetailsRequest {
@@ -56,4 +61,5 @@ service TrocadilhosGame {
     rpc loginToGame (LoginToGameRequest) returns (LoginToGameResponse);
     rpc logoutToMaster (LogoutRequest) returns (LogoutResponse);
     rpc logout (LogoutRequest) returns (APIResponse);
+    rpc start(stream APIRequest) returns (stream APIResponse);
 }

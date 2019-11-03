@@ -4,6 +4,7 @@
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/APIResponse.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginToGameRequest.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginToGameResponseOrBuilder.java
+/home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/APIRequestOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/server/TrocadilhosGameImpl.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/HelloResponse.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LogoutResponse.java
@@ -14,12 +15,14 @@
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Pun.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/server/GrpcServer.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginToGameRequestOrBuilder.java
+/home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/APIRequest.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/ServerDetailsResponseOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LogoutRequestOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginToMasterResponseOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/TrocadilhoRequestOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginToMasterRequest.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginToMasterResponse.java
+/home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/server/ResponseType.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Round.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Server.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Client.java
@@ -27,6 +30,7 @@
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LogoutResponseOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/HelloResponseOrBuilder.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/TrocadilhosGameOuterClass.java
+/home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/server/GameStatus.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Player.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LogoutRequest.java
 /home/marcos-barra/IdeaProjects/Trocadilhos-SD/target/generated-sources/protobuf/grpc-java/trocadilhos/grpc/TrocadilhosGameGrpc.java

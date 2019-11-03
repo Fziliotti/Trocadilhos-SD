@@ -65,4 +65,20 @@ public class Player {
     public void incrementScore (Integer amount){
         this.setScore(this.getScore() + amount);
     }
+
+    public StreamObserver<APIResponse> getResponseObserver() {
+        return responseObserver;
+    }
+
+    public void setResponseObserver(StreamObserver<APIResponse> responseObserver) {
+        this.responseObserver = responseObserver;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
 }

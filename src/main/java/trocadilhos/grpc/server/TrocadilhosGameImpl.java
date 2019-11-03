@@ -8,14 +8,15 @@ import trocadilhos.grpc.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import static trocadilhos.grpc.server.GameStatus.*;
+import static trocadilhos.grpc.server.ResponseType.*;
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImplBase implements Serializable{
+public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImplBase implements Serializable {
 
     private Integer playersQuantity;
     private Integer roundDurationInSeconds;
@@ -27,9 +28,13 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     private Integer pollDurationInSeconds;
     private long pollBeginTime;
     private Integer actualGameMaxPontuation;
+    private GameStatus gameStatus;
+    private List<String> playersThatVoted;
+    private List<String> playersThatWrote;
     private List<String> themes = Arrays.asList("Animais", "Celebridades", "Cinema", "Comida", "Desenho", "Futebol",
             "Heróis", "Música", "Saude", "Casa", "Mouse", "Notebook", "Camiseta", "Nascer", "Blusa", "Relógio", "Cabeça",
             "Cabelo", "Celular", "Piazza");
+
     public TrocadilhosGameImpl() {
     }
 
@@ -42,6 +47,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         this.roundsHistory = new ArrayList<>();
         this.pollDurationInSeconds = pollDurationInSeconds;
         this.actualGameMaxPontuation = 0;
+        this.gameStatus = INTERVAL_TIME;
     }
 
     public List<Player> getPlayers() {
@@ -124,24 +130,21 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         this.actualGameMaxPontuation = actualGameMaxPontuation;
     }
 
-//    public void run() {
-//
-//        while (this.actualGameMaxPontuation < this.pointsToWin) {
-//            startRound();
-//            showScoreboard();
-//            showTheme();
-//            listenPlayersPuns();
-//            waitListenTime(this.roundDurationInSeconds);
-//            startPoll();
-//            listenPlayersVotes();
-//            waitPollListenTime(this.pollDurationInSeconds);
-//            showRoundScoreboard();
-//            updatePlayerScore();
-//            saveGameBackup();
-//        }
-//
-//    }
+    public void run() {
 
+        while (this.actualGameMaxPontuation < this.pointsToWin) {
+            startRound();
+            showScoreboard();
+            showTheme();
+            waitListenTime(this.roundDurationInSeconds);
+            startPoll();
+            waitPollListenTime(this.pollDurationInSeconds);
+            showRoundScoreboard();
+            updatePlayerScore();
+            saveGameBackup();
+        }
+
+    }
 
 
     private void saveGameBackup() {
@@ -150,7 +153,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
             mapper.writeValue(new File("backup.json"), this);
 
-        }catch (IOException exception){
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
@@ -169,10 +172,10 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         List<Pun> punList = new ArrayList<>(this.getActualRound().getPuns().values());
         punList.sort(Pun::compareTo);
         setMaxPontuation(punList);
-//        broadcast("---------PONTUAÇÃO DA RODADA --------\n");
+        broadcast("---------PONTUAÇÃO DA RODADA --------\n", NORMAL_MESSAGE);
         for (int i = 0; i < punList.size(); i++) {
             Pun pun = punList.get(i);
-//            broadcast((i + 1) + "º - " + pun.getDescription() + " --- " + pun.getPontuation() + "\n");
+            broadcast((i + 1) + "º - " + pun.getDescription() + " --- " + pun.getPontuation() + "\n", NORMAL_MESSAGE);
         }
     }
 
@@ -185,13 +188,13 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     }
 
     private void startPoll() {
-//        broadcast("---------------------HORA DA VOTAÇÃO -------------------");
-//        broadcast("-------VOTE DE ACORDO COM O NÚMERO DO TROCADILHO -------");
+        broadcast("---------------------HORA DA VOTAÇÃO -------------------", NORMAL_MESSAGE);
+        broadcast("-------VOTE DE ACORDO COM O NÚMERO DO TROCADILHO -------", NORMAL_MESSAGE);
         this.getActualRound().getPuns().forEach((uuid, pun) -> {
             String message = pun.getNumber() + " ----- " + pun.getDescription();
-//            broadcastPoll(message, pun.getPlayerId());
+            broadcastPoll(message, pun.getPlayerId());
         });
-//        broadcast("Digite seu voto: ");
+        broadcast("Digite seu voto: ", POLL_TIME);
         this.pollBeginTime = System.currentTimeMillis();
     }
 
@@ -214,7 +217,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (this.getActualRound().getNumberOfVotes() == this.playersQuantity)
+            if (this.getActualRound().getNumberOfVotes().equals(this.playersQuantity))
                 break;
         }
     }
@@ -222,8 +225,8 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
 
     private void showTheme() {
         actualRound.setTheme(getRandomTheme(getThemes()));
-//        broadcast("Tema: " + actualRound.getTheme());
-//        broadcast("Escreva seu trocadilho: ");
+        broadcast("Tema: " + actualRound.getTheme(), NORMAL_MESSAGE);
+        broadcast("Escreva seu trocadilho: ", NORMAL_MESSAGE);
         this.roundBeginTime = System.currentTimeMillis();
     }
 
@@ -282,13 +285,13 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
 //        new Thread(() -> {
 //            try {
 //                Scanner entrada = new Scanner(player.getPlayerSocket().getInputStream());
+//                player.getResponseObserver().onCompleted();
 //                while (entrada.hasNextLine()) {
 //                    String message = entrada.nextLine();
 //                    if (message.length() < 140 && !message.isEmpty()) {
 //                        c1.complete(message);
 //                        break;
-//                    }
-//                    else{
+//                    } else {
 //                        sendMessageToPlayer("O trocadilho deve ter até 140 caracteres", player);
 //                    }
 //                }
@@ -319,26 +322,26 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
 //        }).start();
 //    }
 
-//    private void sendMessageToPlayer(String message, Player player) {
-//        try {
-////            PrintStream output = new PrintStream(player.getPlayerSocket().getOutputStream());
-//            output.println(message);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void sendMessageToPlayer(String message, Player player, ResponseType responseType) {
+        APIResponse apiResponse = APIResponse.newBuilder()
+                .setType(responseType.toString())
+                .setMessage(message)
+                .build();
+        player.getResponseObserver().onNext(apiResponse);
+        player.getResponseObserver().onCompleted();
+    }
 
 
     private void showScoreboard() {
-//        broadcast("PLACAR - RODADA " + this.actualRound.getNumber());
+        broadcast("PLACAR - RODADA " + this.actualRound.getNumber(), NORMAL_MESSAGE);
 
         players.stream().sorted(Player::compareTo).forEach(player -> {
-//            broadcast(player.getName() + " ---- " + player.getScore());
+            broadcast(player.getName() + " ---- " + player.getScore(), NORMAL_MESSAGE);
         });
 
         Integer timeLeft = 5;
         while (timeLeft > 0) {
-//            broadcast("Rodada iniciando em " + timeLeft + " segundos...");
+            broadcast("Rodada iniciando em " + timeLeft + " segundos...", NORMAL_MESSAGE);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -346,11 +349,13 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             }
             timeLeft--;
         }
-//        broadcast("*******************************************************");
+        broadcast("*******************************************************", NORMAL_MESSAGE);
     }
 
 
     private void startRound() {
+        this.playersThatVoted = new ArrayList<>();
+        this.playersThatWrote = new ArrayList<>();
         if (this.actualRound == null) {
             this.actualRound = new Round();
             actualRound.setNumber(1);
@@ -363,30 +368,37 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         }
     }
 
-////    private void broadcast(String message) {
-//        this.players.forEach(player -> {
-//            try {
-//                PrintStream output = new PrintStream(player.getPlayerSocket().getOutputStream());
-//                output.println(message);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//    }
+    private void broadcast(String message, ResponseType messageType) {
+        this.players.stream().filter(Player::isOnline).forEach(player -> {
+            APIResponse apiResponse = APIResponse.newBuilder()
+                    .setMessage(message)
+                    .setType(messageType.toString())
+                    .build();
+            player.getResponseObserver().onNext(apiResponse);
+            player.getResponseObserver().onCompleted();
+        });
+    }
 
-////    private void broadcastPoll(String message, UUID playerUUID) {
-//
-//        List<Player> otherPlayers = this.players.stream().filter(player -> player.getId() != playerUUID).collect(Collectors.toList());
-//        otherPlayers.forEach(player -> {
-//            try {
-//                PrintStream output = new PrintStream(player.getPlayerSocket().getOutputStream());
-//                output.println(message);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//
-//    }
+    private Player getPlayerByNickname(String nickname) {
+        return this.players.stream().filter(player -> player.getName().equals(nickname)).collect(Collectors.toList()).get(0);
+    }
+
+    private void broadcastPoll(String message, UUID playerUUID) {
+
+        List<Player> otherPlayers = this.players.stream().
+                filter(player -> player.getId() != playerUUID && player.isOnline())
+                .collect(Collectors.toList());
+
+        otherPlayers.forEach(player -> {
+            APIResponse apiResponse = APIResponse.newBuilder()
+                    .setMessage(message)
+                    .setType(NORMAL_MESSAGE.toString())
+                    .build();
+            player.getResponseObserver().onNext(apiResponse);
+            player.getResponseObserver().onCompleted();
+        });
+
+    }
 
     public TrocadilhosGameImpl(Integer playersQuantity, Integer roundDurationInSeconds, Integer pointsToWin, List<Player> players, Round actualRound, List<Round> roundsHistory, long roundBeginTime, Integer pollDurationInSeconds, long pollBeginTime, Integer actualGameMaxPontuation) {
         this.playersQuantity = playersQuantity;
@@ -419,7 +431,6 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         System.out.println("Request received from client:\n" + request.getNickname());
 
 
-
         Player player = new Player();
         player.setName(request.getNickname());
         LoginToMasterResponse response = LoginToMasterResponse.newBuilder()
@@ -441,5 +452,78 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public StreamObserver<APIRequest> start(StreamObserver<APIResponse> responseObserver) {
+
+        return new StreamObserver<APIRequest>() {
+            @Override
+            public void onNext(APIRequest value) {
+
+                if (gameStatus.toString().equals(WAITING_PUNS.toString())) {
+                    receivePun(value);
+                }
+                if (gameStatus.toString().equals(WAITING_POLL.toString())) {
+                    receivePoll(value);
+                }
+                if (gameStatus.toString().equals(INTERVAL_TIME.toString())) {
+                    receiveNormalMessage(value);
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                System.out.println("got error from player");
+                responseObserver.onError(t);
+            }
+
+            @Override
+            public void onCompleted() {
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+    private void receiveNormalMessage(APIRequest value) {
+        Player player = getPlayerByNickname(value.getFrom());
+        if (value.getMessage().equals("!logout")) {
+            player.setOnline(false);
+            //TODO Chamar aqui método assíncrono que vai retirar o player da lista após um determinado tempo
+        } else {
+            sendMessageToPlayer("Aguarde a próxima etapa do jogo ... Para sair, digite !logout", player, NORMAL_MESSAGE);
+        }
+    }
+
+    private void receivePoll(APIRequest value) {
+        Player player = getPlayerByNickname(value.getFrom());
+        Integer intMessage = Integer.parseInt(value.getMessage());
+        Integer punNumber = getActualRound().getPuns().size() + 1;
+
+        if (playersThatVoted.contains(player.getName())) {
+            sendMessageToPlayer("Você já votou! Aguarde a próxima rodada!", player, WAIT_NEXT_STEP);
+        } else if (intMessage >= punNumber || intMessage <= 0) {
+            sendMessageToPlayer("Número inválido, vote em um dos números acima", player, INVALID_POLL);
+        } else {
+            Pun pun = getActualRound().getPuns().get(Integer.parseInt(value.getMessage()));
+            pun.incrementPontuation();
+            actualRound.incrementVotes();
+        }
+    }
+
+    private void receivePun(APIRequest value) {
+        Player player = getPlayerByNickname(value.getFrom());
+
+        if (playersThatWrote.contains(player.getName())) {
+            sendMessageToPlayer("Você já escreveu seu trocadilho. Aguarde a votação!", player, WAIT_NEXT_STEP);
+        } else if (value.getMessage().length() > 140 || value.getMessage().isEmpty()) {
+            sendMessageToPlayer("O trocadilho deve ter 1 até 140 caracteres", player, INVALID_PUN);
+        } else {
+            int totalPuns = getActualRound().getPuns().size();
+            Pun pun = new Pun(value.getMessage(), totalPuns + 1, player.getId());
+            getActualRound().getPuns().put(totalPuns + 1, pun);
+            player.getPuns().add(pun);
+            playersThatWrote.add(player.getName());
+        }
     }
 }

@@ -1,4 +1,6 @@
 trocadilhos/grpc/LoginToGameRequest$1.class
+trocadilhos/grpc/server/GameStatus.class
+trocadilhos/grpc/server/TrocadilhosGameImpl$1.class
 trocadilhos/grpc/TrocadilhoRequest.class
 trocadilhos/grpc/TrocadilhosGameGrpc$MethodHandlers.class
 trocadilhos/grpc/LogoutResponse$1.class
@@ -21,11 +23,14 @@ trocadilhos/grpc/HelloResponse.class
 trocadilhos/grpc/APIResponse$Builder.class
 trocadilhos/grpc/ServerDetailsResponseOrBuilder.class
 trocadilhos/grpc/LogoutResponse$Builder.class
+trocadilhos/grpc/APIRequest$Builder.class
+trocadilhos/grpc/APIRequestOrBuilder.class
 trocadilhos/grpc/LoginToGameRequest.class
 trocadilhos/grpc/ServerDetailsRequest.class
 trocadilhos/grpc/TrocadilhosGameGrpc$1.class
 trocadilhos/grpc/server/TrocadilhosGameImpl.class
 trocadilhos/grpc/TrocadilhosGameOuterClass.class
+trocadilhos/grpc/APIRequest$1.class
 trocadilhos/grpc/LogoutRequest.class
 trocadilhos/grpc/LogoutRequest$Builder.class
 trocadilhos/grpc/APIResponse.class
@@ -34,9 +39,11 @@ trocadilhos/grpc/HelloResponse$1.class
 trocadilhos/grpc/HelloResponse$Builder.class
 trocadilhos/grpc/LoginToGameRequestOrBuilder.class
 trocadilhos/grpc/client/Client.class
+trocadilhos/grpc/APIRequest.class
 trocadilhos/grpc/TrocadilhosGameGrpc$TrocadilhosGameDescriptorSupplier.class
 trocadilhos/grpc/Player.class
 trocadilhos/grpc/LoginToGameRequest$Builder.class
+trocadilhos/grpc/server/ResponseType.class
 trocadilhos/grpc/ServerDetailsRequestOrBuilder.class
 trocadilhos/grpc/Server.class
 trocadilhos/grpc/TrocadilhoRequest$1.class
@@ -51,6 +58,7 @@ trocadilhos/grpc/LoginToGameResponse$Builder.class
 trocadilhos/grpc/LogoutResponseOrBuilder.class
 trocadilhos/grpc/TrocadilhosGameGrpc.class
 trocadilhos/grpc/ServerMessageReceiver.class
+trocadilhos/grpc/client/Client$1.class
 trocadilhos/grpc/ServerDetailsResponse.class
 trocadilhos/grpc/TrocadilhosGameOuterClass$1.class
 trocadilhos/grpc/LoginToMasterRequest$Builder.class
