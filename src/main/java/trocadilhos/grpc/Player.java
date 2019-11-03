@@ -13,7 +13,7 @@ public class Player {
     private Integer score;
     private List<Pun> puns;
     private StreamObserver<APIResponse> responseObserver;
-
+    boolean online;
 
     public Player() {
     }

@@ -13,6 +13,7 @@ public class GrpcServer {
 
         System.out.println("Starting server...");
         server.start();
+
         System.out.println("trocadilhos.grpc.Server started!");
         server.awaitTermination();
     }

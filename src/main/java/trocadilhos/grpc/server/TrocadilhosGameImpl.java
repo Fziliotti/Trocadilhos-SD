@@ -415,13 +415,16 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     }
 
     @Override
-    public void login(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
+    public void loginToMaster(LoginToMasterRequest request, StreamObserver<LoginToMasterResponse> responseObserver) {
         System.out.println("Request received from client:\n" + request.getNickname());
+
+
 
         Player player = new Player();
         player.setName(request.getNickname());
-        LoginResponse response = LoginResponse.newBuilder()
-                .setMessage("8083")
+        LoginToMasterResponse response = LoginToMasterResponse.newBuilder()
+                .setIp("localhost")
+                .setPort("8081")
                 .build();
 
         responseObserver.onNext(response);

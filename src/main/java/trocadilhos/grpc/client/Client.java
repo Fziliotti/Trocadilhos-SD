@@ -22,12 +22,11 @@ public class Client {
         Scanner sc = new Scanner(System.in);
         String nickname = sc.nextLine();
         System.out.println("Digite seu nickname: ");
-        LoginResponse loginResponse = stub.login(LoginRequest.newBuilder()
+        LoginToMasterResponse loginToMasterResponse = stub.loginToMaster(LoginToMasterRequest.newBuilder()
                 .setNickname(nickname)
                 .build());
 
-
-        System.out.println(loginResponse);
+        System.out.println(loginToMasterResponse);
         channel.shutdown();
     }
 }
