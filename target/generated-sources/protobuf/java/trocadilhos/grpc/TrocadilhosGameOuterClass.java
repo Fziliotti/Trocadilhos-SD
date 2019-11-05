@@ -92,26 +92,26 @@ public final class TrocadilhosGameOuterClass {
       "onse\022\017\n\007message\030\001 \001(\t\"!\n\rLogoutRequest\022\020" +
       "\n\010nickname\030\001 \001(\t\"\"\n\016LogoutResponse\022\020\n\010ni" +
       "ckname\030\001 \001(\t\"1\n\025LoginToMasterResponse\022\n\n" +
-      "\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\t\"+\n\nAPIRequest\022\017\n",
-      "\007message\030\001 \001(\t\022\014\n\004from\030\002 \001(\t\":\n\013APIRespo" +
-      "nse\022\017\n\007message\030\001 \001(\t\022\014\n\004from\030\002 \001(\t\022\014\n\004ty" +
-      "pe\030\003 \001(\t\"\026\n\024ServerDetailsRequest\"E\n\025Serv" +
-      "erDetailsResponse\022\023\n\013playersList\030\001 \001(\t\022\027" +
-      "\n\017amountOfPlayers\030\002 \001(\t2\216\004\n\017TrocadilhosG" +
-      "ame\022T\n\016sendTrocadilho\022#.trocadilhos.grpc" +
-      ".TrocadilhoRequest\032\035.trocadilhos.grpc.AP" +
-      "IResponse\022`\n\rloginToMaster\022&.trocadilhos" +
-      ".grpc.LoginToMasterRequest\032\'.trocadilhos" +
-      ".grpc.LoginToMasterResponse\022Z\n\013loginToGa",
-      "me\022$.trocadilhos.grpc.LoginToGameRequest" +
-      "\032%.trocadilhos.grpc.LoginToGameResponse\022" +
-      "S\n\016logoutToMaster\022\037.trocadilhos.grpc.Log" +
-      "outRequest\032 .trocadilhos.grpc.LogoutResp" +
-      "onse\022H\n\006logout\022\037.trocadilhos.grpc.Logout" +
-      "Request\032\035.trocadilhos.grpc.APIResponse\022H" +
-      "\n\005start\022\034.trocadilhos.grpc.APIRequest\032\035." +
-      "trocadilhos.grpc.APIResponse(\0010\001B\002P\001b\006pr" +
-      "oto3"
+      "\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\t\"9\n\nAPIRequest\022\017\n",
+      "\007message\030\001 \001(\t\022\014\n\004from\030\002 \001(\t\022\014\n\004type\030\003 \001" +
+      "(\t\":\n\013APIResponse\022\017\n\007message\030\001 \001(\t\022\014\n\004fr" +
+      "om\030\002 \001(\t\022\014\n\004type\030\003 \001(\t\"\026\n\024ServerDetailsR" +
+      "equest\"E\n\025ServerDetailsResponse\022\023\n\013playe" +
+      "rsList\030\001 \001(\t\022\027\n\017amountOfPlayers\030\002 \001(\t2\206\004" +
+      "\n\017TrocadilhosGame\022T\n\016sendTrocadilho\022#.tr" +
+      "ocadilhos.grpc.TrocadilhoRequest\032\035.troca" +
+      "dilhos.grpc.APIResponse\022`\n\rloginToMaster" +
+      "\022&.trocadilhos.grpc.LoginToMasterRequest" +
+      "\032\'.trocadilhos.grpc.LoginToMasterRespons",
+      "e\022R\n\013loginToGame\022$.trocadilhos.grpc.Logi" +
+      "nToGameRequest\032\035.trocadilhos.grpc.APIRes" +
+      "ponse\022S\n\016logoutToMaster\022\037.trocadilhos.gr" +
+      "pc.LogoutRequest\032 .trocadilhos.grpc.Logo" +
+      "utResponse\022H\n\006logout\022\037.trocadilhos.grpc." +
+      "LogoutRequest\032\035.trocadilhos.grpc.APIResp" +
+      "onse\022H\n\005start\022\034.trocadilhos.grpc.APIRequ" +
+      "est\032\035.trocadilhos.grpc.APIResponse(\0010\001B\002" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -178,7 +178,7 @@ public final class TrocadilhosGameOuterClass {
     internal_static_trocadilhos_grpc_APIRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_trocadilhos_grpc_APIRequest_descriptor,
-        new java.lang.String[] { "Message", "From", });
+        new java.lang.String[] { "Message", "From", "Type", });
     internal_static_trocadilhos_grpc_APIResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_trocadilhos_grpc_APIResponse_fieldAccessorTable = new

@@ -6,5 +6,7 @@ public enum ResponseType {
     NORMAL_MESSAGE,
     PUN_TIME,
     POLL_TIME,
-    WAIT_NEXT_STEP
+    WAIT_NEXT_STEP,
+    FULL_SERVER_ERROR,
+    IDENTIFICATION
 }

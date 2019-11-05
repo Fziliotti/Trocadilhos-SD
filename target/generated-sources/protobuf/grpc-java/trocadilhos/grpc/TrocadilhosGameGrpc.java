@@ -53,15 +53,15 @@ public final class TrocadilhosGameGrpc {
           .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<trocadilhos.grpc.LoginToGameRequest,
-      trocadilhos.grpc.LoginToGameResponse> METHOD_LOGIN_TO_GAME =
-      io.grpc.MethodDescriptor.<trocadilhos.grpc.LoginToGameRequest, trocadilhos.grpc.LoginToGameResponse>newBuilder()
+      trocadilhos.grpc.APIResponse> METHOD_LOGIN_TO_GAME =
+      io.grpc.MethodDescriptor.<trocadilhos.grpc.LoginToGameRequest, trocadilhos.grpc.APIResponse>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
               "trocadilhos.grpc.TrocadilhosGame", "loginToGame"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               trocadilhos.grpc.LoginToGameRequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              trocadilhos.grpc.LoginToGameResponse.getDefaultInstance()))
+              trocadilhos.grpc.APIResponse.getDefaultInstance()))
           .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<trocadilhos.grpc.LogoutRequest,
@@ -144,7 +144,7 @@ public final class TrocadilhosGameGrpc {
     /**
      */
     public void loginToGame(trocadilhos.grpc.LoginToGameRequest request,
-        io.grpc.stub.StreamObserver<trocadilhos.grpc.LoginToGameResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_LOGIN_TO_GAME, responseObserver);
     }
 
@@ -190,7 +190,7 @@ public final class TrocadilhosGameGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 trocadilhos.grpc.LoginToGameRequest,
-                trocadilhos.grpc.LoginToGameResponse>(
+                trocadilhos.grpc.APIResponse>(
                   this, METHODID_LOGIN_TO_GAME)))
           .addMethod(
             METHOD_LOGOUT_TO_MASTER,
@@ -254,7 +254,7 @@ public final class TrocadilhosGameGrpc {
     /**
      */
     public void loginToGame(trocadilhos.grpc.LoginToGameRequest request,
-        io.grpc.stub.StreamObserver<trocadilhos.grpc.LoginToGameResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_LOGIN_TO_GAME, getCallOptions()), request, responseObserver);
     }
@@ -318,7 +318,7 @@ public final class TrocadilhosGameGrpc {
 
     /**
      */
-    public trocadilhos.grpc.LoginToGameResponse loginToGame(trocadilhos.grpc.LoginToGameRequest request) {
+    public trocadilhos.grpc.APIResponse loginToGame(trocadilhos.grpc.LoginToGameRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_LOGIN_TO_GAME, getCallOptions(), request);
     }
@@ -374,7 +374,7 @@ public final class TrocadilhosGameGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<trocadilhos.grpc.LoginToGameResponse> loginToGame(
+    public com.google.common.util.concurrent.ListenableFuture<trocadilhos.grpc.APIResponse> loginToGame(
         trocadilhos.grpc.LoginToGameRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_LOGIN_TO_GAME, getCallOptions()), request);
@@ -431,7 +431,7 @@ public final class TrocadilhosGameGrpc {
           break;
         case METHODID_LOGIN_TO_GAME:
           serviceImpl.loginToGame((trocadilhos.grpc.LoginToGameRequest) request,
-              (io.grpc.stub.StreamObserver<trocadilhos.grpc.LoginToGameResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<trocadilhos.grpc.APIResponse>) responseObserver);
           break;
         case METHODID_LOGOUT_TO_MASTER:
           serviceImpl.logoutToMaster((trocadilhos.grpc.LogoutRequest) request,

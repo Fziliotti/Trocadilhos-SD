@@ -38,6 +38,7 @@ message LoginToMasterResponse {
 message APIRequest {
     string message = 1;
     string from = 2;
+    string type = 3;
 }
 message APIResponse {
     string message = 1;
@@ -57,7 +58,7 @@ message ServerDetailsResponse {
 service TrocadilhosGame {
     rpc sendTrocadilho (TrocadilhoRequest) returns (APIResponse);
     rpc loginToMaster (LoginToMasterRequest) returns (LoginToMasterResponse);
-    rpc loginToGame (LoginToGameRequest) returns (LoginToGameResponse);
+    rpc loginToGame (LoginToGameRequest) returns (APIResponse);
     rpc logoutToMaster (LogoutRequest) returns (LogoutResponse);
     rpc logout (LogoutRequest) returns (APIResponse);
     rpc start(stream APIRequest) returns (stream APIResponse);

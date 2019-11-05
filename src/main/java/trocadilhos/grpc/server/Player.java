@@ -19,12 +19,12 @@ public class Player {
     public Player() {
     }
 
-    public Player(UUID id, String name, Socket playerSocket, StreamObserver<APIResponse> responseObserver) {
-        this.id = id;
+    public Player( String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
-        this.responseObserver = responseObserver;
         this.score = 0;
         this.puns = new ArrayList<>();
+        this.online = true;
     }
 
     public UUID getId() {

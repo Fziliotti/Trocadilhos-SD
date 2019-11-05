@@ -9,9 +9,10 @@ import io.grpc.stub.StreamObserver;
 import trocadilhos.grpc.*;
 import trocadilhos.grpc.server.ResponseType;
 
+import javax.naming.AuthenticationException;
 import java.util.Scanner;
 
-import static trocadilhos.grpc.server.ResponseType.POLL_TIME;
+import static trocadilhos.grpc.server.ResponseType.*;
 
 public class Client {
 
@@ -30,15 +31,20 @@ public class Client {
         blockingStub = TrocadilhosGameGrpc.newBlockingStub(channel);
     }
 
-    private void startReceive(String nickname, Boolean reconnected) {
+    private void startReceive(String nickname, Boolean reconnected) throws AuthenticationException {
 
         LoginToGameRequest loginToGameRequest = LoginToGameRequest.newBuilder()
                 .setNickname(nickname)
                 .setReconnected(reconnected.toString())
                 .build();
 
-        LoginToGameResponse loginToGameResponse = blockingStub.loginToGame(loginToGameRequest);
-        if(loginToGameResponse.get)
+        APIResponse apiResponse = blockingStub.loginToGame(loginToGameRequest);
+        if(apiResponse.getType().equals(FULL_SERVER_ERROR.toString())){
+            throw new AuthenticationException("Failed to login to game server!");
+        }
+        if(apiResponse.getType().equals(NORMAL_MESSAGE.toString())){
+            System.out.println(apiResponse.getMessage());
+        }
 
 
         StreamObserver<APIRequest> connection = stub.start(new StreamObserver<APIResponse>() {
@@ -54,9 +60,13 @@ public class Client {
 
             @Override
             public void onCompleted() {
-
+                System.out.println("completed");
             }
         });
+
+
+        APIRequest identificationRequest = APIRequest.newBuilder().setFrom(nickname).setType(IDENTIFICATION.toString()).build();
+        connection.onNext(identificationRequest);
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
@@ -66,7 +76,7 @@ public class Client {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AuthenticationException {
 
         Client client = new Client("localhost", 8000);
 
