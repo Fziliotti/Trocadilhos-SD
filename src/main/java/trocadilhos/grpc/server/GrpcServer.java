@@ -8,7 +8,7 @@ import java.io.IOException;
 public class GrpcServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        Server server = ServerBuilder.forPort(8080)
+        Server server = ServerBuilder.forPort(8000)
                 .addService(new TrocadilhosGameImpl()).build();
 
         System.out.println("Starting server...");

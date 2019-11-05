@@ -2,6 +2,7 @@ package trocadilhos.grpc;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import trocadilhos.grpc.server.Player;
 import trocadilhos.grpc.server.TrocadilhosGameImpl;
 
 import java.io.*;

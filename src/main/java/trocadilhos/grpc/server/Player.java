@@ -1,6 +1,7 @@
-package trocadilhos.grpc;
+package trocadilhos.grpc.server;
 
 import io.grpc.stub.StreamObserver;
+import trocadilhos.grpc.APIResponse;
 
 import java.net.Socket;
 import java.util.ArrayList;

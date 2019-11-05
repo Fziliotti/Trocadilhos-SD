@@ -169,6 +169,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     }
 
     private void showRoundScoreboard() {
+        this.gameStatus = INTERVAL_TIME;
         List<Pun> punList = new ArrayList<>(this.getActualRound().getPuns().values());
         punList.sort(Pun::compareTo);
         setMaxPontuation(punList);
@@ -199,6 +200,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     }
 
     private void waitListenTime(Integer seconds) {
+        this.gameStatus = WAITING_PUNS;
         while ((System.currentTimeMillis() - this.roundBeginTime) < ((seconds + 5) * 1000)) {
             try {
                 Thread.sleep(1000);
@@ -211,6 +213,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     }
 
     private void waitPollListenTime(Integer seconds) {
+        this.gameStatus = WAITING_POLL;
         while ((System.currentTimeMillis() - this.pollBeginTime) < ((seconds + 5) * 1000)) {
             try {
                 Thread.sleep(1000);
@@ -354,6 +357,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
 
 
     private void startRound() {
+        this.gameStatus = INTERVAL_TIME;
         this.playersThatVoted = new ArrayList<>();
         this.playersThatWrote = new ArrayList<>();
         if (this.actualRound == null) {
@@ -413,6 +417,11 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         this.actualGameMaxPontuation = 0;
     }
 
+    @Override
+    public void login(LoginToGameRequest loginToGameRequest) {
+
+
+    }
 
     @Override
     public void sendTrocadilho(TrocadilhoRequest request, StreamObserver<APIResponse> responseObserver) {
@@ -461,14 +470,19 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             @Override
             public void onNext(APIRequest value) {
 
-                if (gameStatus.toString().equals(WAITING_PUNS.toString())) {
-                    receivePun(value);
-                }
-                if (gameStatus.toString().equals(WAITING_POLL.toString())) {
-                    receivePoll(value);
-                }
-                if (gameStatus.toString().equals(INTERVAL_TIME.toString())) {
-                    receiveNormalMessage(value);
+                switch (gameStatus) {
+                    case WAITING_PUNS: {
+                        receivePun(value);
+                    }
+                    case WAITING_POLL: {
+                        receivePoll(value);
+                    }
+                    case INTERVAL_TIME: {
+                        receiveNormalMessage(value);
+                    }
+                    default: {
+                        System.out.println("Invalid game status!");;
+                    }
                 }
             }
 
@@ -482,12 +496,14 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             public void onCompleted() {
                 responseObserver.onCompleted();
             }
+
         };
+
     }
 
     private void receiveNormalMessage(APIRequest value) {
         Player player = getPlayerByNickname(value.getFrom());
-        if (value.getMessage().equals("!logout")) {
+        if (value.getMessage().equalsIgnoreCase("!logout")) {
             player.setOnline(false);
             //TODO Chamar aqui método assíncrono que vai retirar o player da lista após um determinado tempo
         } else {

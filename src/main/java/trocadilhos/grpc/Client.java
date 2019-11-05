@@ -1,5 +1,6 @@
 package trocadilhos.grpc;
 
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -17,9 +18,9 @@ public class Client {
             Scanner scanner = new Scanner(System.in);
             PrintStream saida = new PrintStream(socket.getOutputStream());
 
-            ServerMessageReceiver serverMessageReceiver =
-                    new ServerMessageReceiver(socket.getInputStream());
-            new Thread(serverMessageReceiver).start();
+//            ClientMessageSender serverMessageReceiver =
+//                    new ClientMessageSender(socket.getInputStream());
+//            new Thread(serverMessageReceiver).start();
 
             while (scanner.hasNextLine()) {
                 saida.println(scanner.nextLine());

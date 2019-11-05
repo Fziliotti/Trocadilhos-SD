@@ -1,4 +1,4 @@
-package trocadilhos.grpc;
+package trocadilhos.grpc.server;
 
 import java.util.HashMap;
 import java.util.Map;
