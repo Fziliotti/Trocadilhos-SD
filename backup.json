@@ -1,1 +1,159 @@
-{"playersQuantity":3,"roundDurationInSeconds":60,"pointsToWin":10,"players":[{"id":"f8cf92bd-811f-4862-a57b-d25f8437f1bf","name":"marcos","score":1,"puns":[{"id":"ee5ff3a5-cad4-4b64-9bf8-514c938cab4e","description":"opa","pontuation":1,"number":3,"playerId":"f8cf92bd-811f-4862-a57b-d25f8437f1bf"}],"responseObserver":{"cancelled":false,"ready":true},"online":true},{"id":"4d86ef9d-868f-40fd-b7fe-6bce421a6151","name":"joao","score":0,"puns":[{"id":"651ccec9-3f58-4386-82c6-b67b8d06cb0d","description":"tete","pontuation":0,"number":2,"playerId":"4d86ef9d-868f-40fd-b7fe-6bce421a6151"}],"responseObserver":{"cancelled":false,"ready":true},"online":true},{"id":"9fb0e628-e94b-407e-ae46-f75dd97c7976","name":"pedro","score":2,"puns":[{"id":"6804f1e3-3b2d-41a9-a496-209fa754ff50","description":"fu tebol","pontuation":2,"number":1,"playerId":"9fb0e628-e94b-407e-ae46-f75dd97c7976"}],"responseObserver":{"cancelled":false,"ready":true},"online":true}],"actualRound":{"id":"ac91c194-df80-45fa-af54-368ecacb1a27","number":1,"theme":"Futebol","puns":{"1":{"id":"6804f1e3-3b2d-41a9-a496-209fa754ff50","description":"fu tebol","pontuation":2,"number":1,"playerId":"9fb0e628-e94b-407e-ae46-f75dd97c7976"},"2":{"id":"651ccec9-3f58-4386-82c6-b67b8d06cb0d","description":"tete","pontuation":0,"number":2,"playerId":"4d86ef9d-868f-40fd-b7fe-6bce421a6151"},"3":{"id":"ee5ff3a5-cad4-4b64-9bf8-514c938cab4e","description":"opa","pontuation":1,"number":3,"playerId":"f8cf92bd-811f-4862-a57b-d25f8437f1bf"}},"winner":null,"numberOfVotes":3},"roundsHistory":[],"roundBeginTime":1572979636618,"pollDurationInSeconds":20,"pollBeginTime":1572979666676,"actualGameMaxPontuation":2,"themes":["Animais","Celebridades","Cinema","Comida","Desenho","Futebol","Heróis","Música","Saude","Casa","Mouse","Notebook","Camiseta","Nascer","Blusa","Relógio","Cabeça","Cabelo","Celular","Piazza"]}
+{
+  "playersQuantity": 3,
+  "roundDurationInSeconds": 60,
+  "pointsToWin": 10,
+  "players": [
+    {
+      "id": "6d791881-60e5-4808-ba65-0ec5d3dfd6db",
+      "name": "marcos",
+      "score": 2,
+      "puns": [
+        {
+          "id": "b64a8312-bec5-47d4-a3f2-29fc54f7e6f7",
+          "description": "opa opa chico chio",
+          "pontuation": 1,
+          "number": 1,
+          "playerId": "6d791881-60e5-4808-ba65-0ec5d3dfd6db"
+        },
+        {
+          "id": "50969d09-8c17-4a0c-8df0-ee85a7805fa0",
+          "description": "de senho",
+          "pontuation": 1,
+          "number": 1,
+          "playerId": "6d791881-60e5-4808-ba65-0ec5d3dfd6db"
+        }
+      ],
+      "responseObserver": {
+        "cancelled": false,
+        "ready": true
+      },
+      "online": true
+    },
+    {
+      "id": "5b8ef8c9-94d0-482f-b1f5-2729d3d6504f",
+      "name": "dani",
+      "score": 3,
+      "puns": [
+        {
+          "id": "a367b955-d39c-4227-bb66-16ffadc5771a",
+          "description": "eita lele",
+          "pontuation": 2,
+          "number": 2,
+          "playerId": "5b8ef8c9-94d0-482f-b1f5-2729d3d6504f"
+        },
+        {
+          "id": "b0410bda-2aa8-473f-bb57-e9bdd20c38d6",
+          "description": "juao",
+          "pontuation": 1,
+          "number": 2,
+          "playerId": "5b8ef8c9-94d0-482f-b1f5-2729d3d6504f"
+        }
+      ],
+      "responseObserver": {
+        "cancelled": false,
+        "ready": true
+      },
+      "online": true
+    },
+    {
+      "id": "e315361b-489b-458a-a01a-34fc42186fa9",
+      "name": "tiago",
+      "score": 1,
+      "puns": [
+        {
+          "id": "f6ea250e-6b4a-4323-8cd9-7c91d74741b5",
+          "description": "eita meu amigo",
+          "pontuation": 1,
+          "number": 3,
+          "playerId": "e315361b-489b-458a-a01a-34fc42186fa9"
+        }
+      ],
+      "responseObserver": {
+        "cancelled": false,
+        "ready": true
+      },
+      "online": true
+    }
+  ],
+  "actualRound": {
+    "id": "bad3dbd6-1338-42ef-8fb3-028219f9a7ea",
+    "number": 2,
+    "theme": "Desenho",
+    "puns": {
+      "1": {
+        "id": "50969d09-8c17-4a0c-8df0-ee85a7805fa0",
+        "description": "de senho",
+        "pontuation": 1,
+        "number": 1,
+        "playerId": "6d791881-60e5-4808-ba65-0ec5d3dfd6db"
+      },
+      "2": {
+        "id": "b0410bda-2aa8-473f-bb57-e9bdd20c38d6",
+        "description": "juao",
+        "pontuation": 1,
+        "number": 2,
+        "playerId": "5b8ef8c9-94d0-482f-b1f5-2729d3d6504f"
+      },
+      "3": {
+        "id": "f6ea250e-6b4a-4323-8cd9-7c91d74741b5",
+        "description": "eita meu amigo",
+        "pontuation": 1,
+        "number": 3,
+        "playerId": "e315361b-489b-458a-a01a-34fc42186fa9"
+      }
+    },
+    "winner": null,
+    "numberOfVotes": 3
+  },
+  "roundsHistory": [
+    {
+      "id": "5de7955f-26d3-4ac0-969f-6cdfc7bcd876",
+      "number": 1,
+      "theme": "Heróis",
+      "puns": {
+        "1": {
+          "id": "b64a8312-bec5-47d4-a3f2-29fc54f7e6f7",
+          "description": "opa opa chico chio",
+          "pontuation": 1,
+          "number": 1,
+          "playerId": "6d791881-60e5-4808-ba65-0ec5d3dfd6db"
+        },
+        "2": {
+          "id": "a367b955-d39c-4227-bb66-16ffadc5771a",
+          "description": "eita lele",
+          "pontuation": 2,
+          "number": 2,
+          "playerId": "5b8ef8c9-94d0-482f-b1f5-2729d3d6504f"
+        }
+      },
+      "winner": null,
+      "numberOfVotes": 3
+    }
+  ],
+  "roundBeginTime": 1573922403096,
+  "pollDurationInSeconds": 20,
+  "pollBeginTime": 1573922414106,
+  "actualGameMaxPontuation": 2,
+  "themes": [
+    "Animais",
+    "Celebridades",
+    "Cinema",
+    "Comida",
+    "Desenho",
+    "Futebol",
+    "Heróis",
+    "Música",
+    "Saude",
+    "Casa",
+    "Mouse",
+    "Notebook",
+    "Camiseta",
+    "Nascer",
+    "Blusa",
+    "Relógio",
+    "Cabeça",
+    "Cabelo",
+    "Celular",
+    "Piazza"
+  ]
+}

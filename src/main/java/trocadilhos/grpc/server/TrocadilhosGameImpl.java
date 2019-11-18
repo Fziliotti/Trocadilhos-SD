@@ -20,6 +20,8 @@ import static trocadilhos.grpc.server.ResponseType.*;
 public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImplBase implements Serializable {
 
     private int playersQuantity;
+    private String ip;
+    private int port;
     private Integer roundDurationInSeconds = 60;
     private Integer maxPlayers = 8;
     private Integer pointsToWin = 10;
@@ -32,6 +34,7 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
     private Integer actualGameMaxPontuation = 0;
     private Integer minPlayersToStartGame = 2;
     private GameStatus gameStatus;
+    private int nextServerPort;
     private List<String> playersThatVoted = new ArrayList<>();
     private List<String> playersThatWrote = new ArrayList<>();
     private List<String> themes = Arrays.asList("Animais", "Celebridades", "Cinema", "Comida", "Desenho", "Futebol",
@@ -360,6 +363,11 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
                 String message = showGameStartingMessage(loginToGameRequest, responseObserver);
                 broadcast(message, NORMAL_MESSAGE);
                 responseObserver.onCompleted();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 this.run();
             } else {
                 String enteringMessage = getEnteringGameMessage(loginToGameRequest);

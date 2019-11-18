@@ -12,6 +12,7 @@ message HelloResponse {
 
 message LoginToMasterRequest {
     string nickname = 1;
+    string region = 2;
 }
 
 message LoginToGameRequest {
@@ -33,6 +34,7 @@ message LogoutResponse {
 message LoginToMasterResponse {
     string ip = 1;
     string port = 2;
+    string reconnected = 3;
 }
 
 message APIRequest {

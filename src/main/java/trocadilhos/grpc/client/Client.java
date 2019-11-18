@@ -10,6 +10,7 @@ import trocadilhos.grpc.*;
 import trocadilhos.grpc.server.ResponseType;
 
 import javax.naming.AuthenticationException;
+import java.util.Random;
 import java.util.Scanner;
 
 import static trocadilhos.grpc.server.ResponseType.*;
@@ -78,22 +79,27 @@ public class Client {
 
     public static void main(String[] args) throws AuthenticationException {
 
-        Client client = new Client("localhost", 8000);
+        Random random = new Random();
+        int port = random.nextInt((8085 - 8080)) + 8080;
+     //  Client client = new Client ("localhost", port);
+       Client client = new Client("localhost", 8080);
 
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite seu nickname: ");
         String nickname = sc.nextLine();
+//        System.out.println("Informe sua região de acordo com os números a seguir");
 
         //TODO validar aqui se nickname foi reconectado
 
 
         client.startReceive(nickname, false);
 
-//        //LoginToMasterResponse loginToMasterResponse = stub.loginToMaster(LoginToMasterRequest.newBuilder()
+//        LoginToMasterResponse loginToMasterResponse = client.blockingStub.loginToMaster(LoginToMasterRequest.newBuilder()
 //                .setNickname(nickname)
+//                .setRegion()
 //                .build());
-//
+
 //        System.out.println(loginToMasterResponse);
         client.channel.shutdown();
     }

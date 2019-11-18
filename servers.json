@@ -1,0 +1,1 @@
+{"serverStatusList":[{"ip":"localhost","port":8080,"region":"NORTE","online":true},{"ip":"localhost","port":8081,"region":"SUL","online":true},{"ip":"localhost","port":8082,"region":"SUDESTE","online":false},{"ip":"localhost","port":8083,"region":"NORDESTE","online":false},{"ip":"localhost","port":8084,"region":"CENTROOESTE","online":false}]}
