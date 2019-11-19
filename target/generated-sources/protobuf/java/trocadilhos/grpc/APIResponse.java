@@ -16,7 +16,8 @@ public  final class APIResponse extends
   }
   private APIResponse() {
     message_ = "";
-    code_ = "";
+    from_ = "";
+    type_ = "";
   }
 
   @java.lang.Override
@@ -53,7 +54,13 @@ public  final class APIResponse extends
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            code_ = s;
+            from_ = s;
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            type_ = s;
             break;
           }
         }
@@ -113,34 +120,68 @@ public  final class APIResponse extends
     }
   }
 
-  public static final int CODE_FIELD_NUMBER = 2;
-  private volatile java.lang.Object code_;
+  public static final int FROM_FIELD_NUMBER = 2;
+  private volatile java.lang.Object from_;
   /**
-   * <code>string code = 2;</code>
+   * <code>string from = 2;</code>
    */
-  public java.lang.String getCode() {
-    java.lang.Object ref = code_;
+  public java.lang.String getFrom() {
+    java.lang.Object ref = from_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      code_ = s;
+      from_ = s;
       return s;
     }
   }
   /**
-   * <code>string code = 2;</code>
+   * <code>string from = 2;</code>
    */
   public com.google.protobuf.ByteString
-      getCodeBytes() {
-    java.lang.Object ref = code_;
+      getFromBytes() {
+    java.lang.Object ref = from_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      code_ = b;
+      from_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int TYPE_FIELD_NUMBER = 3;
+  private volatile java.lang.Object type_;
+  /**
+   * <code>string type = 3;</code>
+   */
+  public java.lang.String getType() {
+    java.lang.Object ref = type_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      type_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string type = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getTypeBytes() {
+    java.lang.Object ref = type_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      type_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -162,8 +203,11 @@ public  final class APIResponse extends
     if (!getMessageBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
     }
-    if (!getCodeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, code_);
+    if (!getFromBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, from_);
+    }
+    if (!getTypeBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
     }
   }
 
@@ -175,8 +219,11 @@ public  final class APIResponse extends
     if (!getMessageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
     }
-    if (!getCodeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, code_);
+    if (!getFromBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, from_);
+    }
+    if (!getTypeBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
     }
     memoizedSize = size;
     return size;
@@ -196,8 +243,10 @@ public  final class APIResponse extends
     boolean result = true;
     result = result && getMessage()
         .equals(other.getMessage());
-    result = result && getCode()
-        .equals(other.getCode());
+    result = result && getFrom()
+        .equals(other.getFrom());
+    result = result && getType()
+        .equals(other.getType());
     return result;
   }
 
@@ -210,8 +259,10 @@ public  final class APIResponse extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
     hash = (53 * hash) + getMessage().hashCode();
-    hash = (37 * hash) + CODE_FIELD_NUMBER;
-    hash = (53 * hash) + getCode().hashCode();
+    hash = (37 * hash) + FROM_FIELD_NUMBER;
+    hash = (53 * hash) + getFrom().hashCode();
+    hash = (37 * hash) + TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + getType().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -343,7 +394,9 @@ public  final class APIResponse extends
       super.clear();
       message_ = "";
 
-      code_ = "";
+      from_ = "";
+
+      type_ = "";
 
       return this;
     }
@@ -368,7 +421,8 @@ public  final class APIResponse extends
     public trocadilhos.grpc.APIResponse buildPartial() {
       trocadilhos.grpc.APIResponse result = new trocadilhos.grpc.APIResponse(this);
       result.message_ = message_;
-      result.code_ = code_;
+      result.from_ = from_;
+      result.type_ = type_;
       onBuilt();
       return result;
     }
@@ -414,8 +468,12 @@ public  final class APIResponse extends
         message_ = other.message_;
         onChanged();
       }
-      if (!other.getCode().isEmpty()) {
-        code_ = other.code_;
+      if (!other.getFrom().isEmpty()) {
+        from_ = other.from_;
+        onChanged();
+      }
+      if (!other.getType().isEmpty()) {
+        type_ = other.type_;
         onChanged();
       }
       onChanged();
@@ -513,71 +571,140 @@ public  final class APIResponse extends
       return this;
     }
 
-    private java.lang.Object code_ = "";
+    private java.lang.Object from_ = "";
     /**
-     * <code>string code = 2;</code>
+     * <code>string from = 2;</code>
      */
-    public java.lang.String getCode() {
-      java.lang.Object ref = code_;
+    public java.lang.String getFrom() {
+      java.lang.Object ref = from_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        code_ = s;
+        from_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string code = 2;</code>
+     * <code>string from = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getCodeBytes() {
-      java.lang.Object ref = code_;
+        getFromBytes() {
+      java.lang.Object ref = from_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        code_ = b;
+        from_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string code = 2;</code>
+     * <code>string from = 2;</code>
      */
-    public Builder setCode(
+    public Builder setFrom(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      code_ = value;
+      from_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string code = 2;</code>
+     * <code>string from = 2;</code>
      */
-    public Builder clearCode() {
+    public Builder clearFrom() {
       
-      code_ = getDefaultInstance().getCode();
+      from_ = getDefaultInstance().getFrom();
       onChanged();
       return this;
     }
     /**
-     * <code>string code = 2;</code>
+     * <code>string from = 2;</code>
      */
-    public Builder setCodeBytes(
+    public Builder setFromBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      code_ = value;
+      from_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object type_ = "";
+    /**
+     * <code>string type = 3;</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string type = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string type = 3;</code>
+     */
+    public Builder setType(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      type_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string type = 3;</code>
+     */
+    public Builder clearType() {
+      
+      type_ = getDefaultInstance().getType();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string type = 3;</code>
+     */
+    public Builder setTypeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      type_ = value;
       onChanged();
       return this;
     }

@@ -1,23 +1,39 @@
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/HelloResponse.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/grpc-java/trocadilhos/grpc/UserGrpc.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/client/Client.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/APIResponseOrBuilder.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Game.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Server.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/TrocadilhoRequest.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/HelloResponseOrBuilder.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Client.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Round.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/server/TrocadilhosGameImpl.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/server/GrpcServer.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Player.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/TrocadilhoRequestOrBuilder.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LogoutRequest.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/TrocadilhosGameOuterClass.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/grpc-java/trocadilhos/grpc/TrocadilhosGameGrpc.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/APIResponse.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginRequestOrBuilder.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/ServerMessageReceiver.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LogoutRequestOrBuilder.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/src/main/java/trocadilhos/grpc/Pun.java
-/Users/guilhermeraimondi/Downloads/Trocadilhos-SD/target/generated-sources/protobuf/java/trocadilhos/grpc/LoginRequest.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\HelloResponseOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToGameResponse.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\APIRequestOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\GameStatus.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\client\Client.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToGameResponseOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\APIResponse.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\APIResponseOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\ServerDetailsResponse.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\Player.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\Round.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\GameServers.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\Server.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToMasterRequestOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\ServerDetailsResponseOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\client\ClientMessageSender.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\ResponseType.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToMasterResponse.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\ServerDetailsRequestOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\APIRequest.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\BrazilRegion.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToMasterResponseOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LogoutResponseOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\Client.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\TrocadilhoRequestOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\ServerDetailsRequest.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\GrpcServer.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\Pun.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToMasterRequest.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LogoutResponse.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\HelloResponse.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\grpc-java\trocadilhos\grpc\TrocadilhosGameGrpc.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\src\main\java\trocadilhos\grpc\server\TrocadilhosGameImpl.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LogoutRequest.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\TrocadilhoRequest.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToGameRequestOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\TrocadilhosGameOuterClass.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LogoutRequestOrBuilder.java
+C:\Users\Fabricio ZIliotti\Desktop\Trocadilhos-SD\target\generated-sources\protobuf\java\trocadilhos\grpc\LoginToGameRequest.java

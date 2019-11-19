@@ -2,6 +2,8 @@ package trocadilhos.grpc;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import trocadilhos.grpc.server.Player;
+import trocadilhos.grpc.server.TrocadilhosGameImpl;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -31,16 +33,16 @@ public class Server {
                 out.println("Digite seu nickname: ");
                 String playerName = in.nextLine();
                 out.println("Aguarde a entrada de mais jogadores =)");
-                playerList.add(new Player(UUID.randomUUID(), playerName, client));
+               // playerList.add(new Player(UUID.randomUUID(), playerName, client));
 
             }
 
-            Game game = Server.getBackupOrNewGame(playerList);
+            TrocadilhosGameImpl trocadilhosGameImpl = Server.getBackupOrNewGame(playerList);
 
-            game.run();
+//            trocadilhosGameImpl.run();
 
             for (Player player : playerList) {
-                player.getPlayerSocket().close();
+             //   player.getPlayerSocket().close();
             }
             server.close();
 
@@ -65,7 +67,7 @@ public class Server {
     }
 
 
-    private static Game getBackupOrNewGame(List<Player> playerList) {
+    private static TrocadilhosGameImpl getBackupOrNewGame(List<Player> playerList) {
         try {
             File arquivo = new File("backup.json");
             FileReader fr = new FileReader(arquivo);
@@ -78,21 +80,21 @@ public class Server {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             if(!String.valueOf(json).equals("")){
-                Game game = mapper.readValue(String.valueOf(json), Game.class);
-                setGamePlayerList(playerList, game);
-                return game;
+                TrocadilhosGameImpl trocadilhosGameImpl = mapper.readValue(String.valueOf(json), TrocadilhosGameImpl.class);
+                setGamePlayerList(playerList, trocadilhosGameImpl);
+                return trocadilhosGameImpl;
             }
-            return new Game(MAX_PLAYERS, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
+            return new TrocadilhosGameImpl(MAX_PLAYERS, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
 
         }catch (IOException exception){
             exception.printStackTrace();
-            return new Game(MAX_PLAYERS, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
+            return new TrocadilhosGameImpl(MAX_PLAYERS, ROUND_DURATION_IN_SECONDS, POINTS_TO_WIN, playerList, POLL_DURATION_IN_SECONDS);
         }
     }
 
-    private static void setGamePlayerList(List<Player> playerList, Game game) {
+    private static void setGamePlayerList(List<Player> playerList, TrocadilhosGameImpl trocadilhosGameImpl) {
         Map<String, Player> backupPlayersMap = new HashMap<>();
-        game.getPlayers().forEach(player -> backupPlayersMap.put(player.getName().toLowerCase(), player));
+        trocadilhosGameImpl.getPlayers().forEach(player -> backupPlayersMap.put(player.getName().toLowerCase(), player));
         playerList.forEach(player -> {
             Player backupPlayer = backupPlayersMap.get(player.getName().toLowerCase());
             if(backupPlayer != null){
@@ -100,7 +102,7 @@ public class Server {
                 player.setPuns(backupPlayer.getPuns());
             }
         });
-        game.setPlayers(playerList);
+        trocadilhosGameImpl.setPlayers(playerList);
     }
 
 }

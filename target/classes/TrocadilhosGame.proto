@@ -10,25 +10,58 @@ message HelloResponse {
     string greeting = 1;
 }
 
-message LoginRequest {
+message LoginToMasterRequest {
     string nickname = 1;
+    string region = 2;
+}
+
+message LoginToGameRequest {
+    string nickname = 1;
+    string reconnected = 2;
+}
+
+message LoginToGameResponse{
+    string message = 1;
 }
 
 message LogoutRequest {
     string nickname = 1;
 }
+message LogoutResponse {
+    string nickname = 1;
+}
 
+message LoginToMasterResponse {
+    string ip = 1;
+    string port = 2;
+    string reconnected = 3;
+}
+
+message APIRequest {
+    string message = 1;
+    string from = 2;
+    string type = 3;
+}
 message APIResponse {
     string message = 1;
-    string code = 2;
+    string from = 2;
+    string type = 3;
+}
+
+message ServerDetailsRequest {
+}
+
+message ServerDetailsResponse {
+    string playersList = 1;
+    string amountOfPlayers = 2;
 }
 
 
 service TrocadilhosGame {
-    rpc sendTrocadilho(TrocadilhoRequest) returns (APIResponse);
-}
-
-service User {
-    rpc login(LoginRequest) returns (APIResponse);
-    rpc logout(LogoutRequest) returns (APIResponse);
+    rpc sendTrocadilho (TrocadilhoRequest) returns (APIResponse);
+    rpc loginToMaster (LoginToMasterRequest) returns (LoginToMasterResponse);
+    rpc loginToGame (LoginToGameRequest) returns (APIResponse);
+    rpc logoutToMaster (LogoutRequest) returns (LogoutResponse);
+    rpc logout (LogoutRequest) returns (APIResponse);
+    rpc start(stream APIRequest) returns (stream APIResponse);
 }

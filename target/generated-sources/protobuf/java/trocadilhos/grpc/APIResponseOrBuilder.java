@@ -18,12 +18,22 @@ public interface APIResponseOrBuilder extends
       getMessageBytes();
 
   /**
-   * <code>string code = 2;</code>
+   * <code>string from = 2;</code>
    */
-  java.lang.String getCode();
+  java.lang.String getFrom();
   /**
-   * <code>string code = 2;</code>
+   * <code>string from = 2;</code>
    */
   com.google.protobuf.ByteString
-      getCodeBytes();
+      getFromBytes();
+
+  /**
+   * <code>string type = 3;</code>
+   */
+  java.lang.String getType();
+  /**
+   * <code>string type = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getTypeBytes();
 }
