@@ -20,7 +20,7 @@ public class TestServer {
 
         GameServers gameServers = getGameServers();
 
-        Optional<GameServers.ServerStatus> firstOffline = gameServers.getServerStatusList().stream().filter(gameServer -> !gameServer.getOnline()).findFirst();
+        Optional<GameServers.ServerStatus> firstOffline = gameServers.getServerStatusList().stream().filter(gameServer -> !gameServer.isOnline()).findFirst();
 
         if (!firstOffline.isPresent()) {
             throw new RuntimeException("All servers are connected!");

@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.grpc.stub.StreamObserver;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import trocadilhos.grpc.*;
 
 import java.io.File;
@@ -16,6 +20,9 @@ import java.util.stream.Collectors;
 import static trocadilhos.grpc.server.GameStatus.*;
 import static trocadilhos.grpc.server.ResponseType.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImplBase implements Serializable {
 
@@ -41,8 +48,6 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             "Heróis", "Música", "Saude", "Casa", "Mouse", "Notebook", "Camiseta", "Nascer", "Blusa", "Relógio", "Cabeça",
             "Cabelo", "Celular", "Piazza");
 
-    public TrocadilhosGameImpl() {
-    }
 
     public TrocadilhosGameImpl(Integer playersQuantity, Integer roundDurationInSeconds, Integer pointsToWin, List<Player> players, Integer pollDurationInSeconds) {
         this.playersQuantity = playersQuantity;
@@ -54,86 +59,6 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         this.pollDurationInSeconds = pollDurationInSeconds;
         this.actualGameMaxPontuation = 0;
         this.gameStatus = INTERVAL_TIME;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-    public Integer getPlayersQuantity() {
-        return playersQuantity;
-    }
-
-    public void setPlayersQuantity(Integer playersQuantity) {
-        this.playersQuantity = playersQuantity;
-    }
-
-    public Integer getRoundDurationInSeconds() {
-        return roundDurationInSeconds;
-    }
-
-    public void setRoundDurationInSeconds(Integer roundDurationInSeconds) {
-        this.roundDurationInSeconds = roundDurationInSeconds;
-    }
-
-    public Integer getPointsToWin() {
-        return pointsToWin;
-    }
-
-    public void setPointsToWin(Integer pointsToWin) {
-        this.pointsToWin = pointsToWin;
-    }
-
-    public Round getActualRound() {
-        return actualRound;
-    }
-
-    public void setActualRound(Round actualRound) {
-        this.actualRound = actualRound;
-    }
-
-    public List<Round> getRoundsHistory() {
-        return roundsHistory;
-    }
-
-    public void setRoundsHistory(List<Round> roundsHistory) {
-        this.roundsHistory = roundsHistory;
-    }
-
-    public long getRoundBeginTime() {
-        return roundBeginTime;
-    }
-
-    public void setRoundBeginTime(long roundBeginTime) {
-        this.roundBeginTime = roundBeginTime;
-    }
-
-    public Integer getPollDurationInSeconds() {
-        return pollDurationInSeconds;
-    }
-
-    public void setPollDurationInSeconds(Integer pollDurationInSeconds) {
-        this.pollDurationInSeconds = pollDurationInSeconds;
-    }
-
-    public long getPollBeginTime() {
-        return pollBeginTime;
-    }
-
-    public void setPollBeginTime(long pollBeginTime) {
-        this.pollBeginTime = pollBeginTime;
-    }
-
-    public Integer getActualGameMaxPontuation() {
-        return actualGameMaxPontuation;
-    }
-
-    public void setActualGameMaxPontuation(Integer actualGameMaxPontuation) {
-        this.actualGameMaxPontuation = actualGameMaxPontuation;
     }
 
     public void run() {
@@ -151,7 +76,6 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
         }
 
     }
-
 
     private void saveGameBackup() {
         try {
@@ -331,19 +255,6 @@ public class TrocadilhosGameImpl extends TrocadilhosGameGrpc.TrocadilhosGameImpl
             player.getResponseObserver().onNext(apiResponse);
         });
 
-    }
-
-    public TrocadilhosGameImpl(Integer playersQuantity, Integer roundDurationInSeconds, Integer pointsToWin, List<Player> players, Round actualRound, List<Round> roundsHistory, long roundBeginTime, Integer pollDurationInSeconds, long pollBeginTime, Integer actualGameMaxPontuation) {
-        this.playersQuantity = playersQuantity;
-        this.roundDurationInSeconds = roundDurationInSeconds;
-        this.pointsToWin = pointsToWin;
-        this.players = players;
-        this.actualRound = actualRound;
-        this.roundsHistory = roundsHistory;
-        this.roundBeginTime = roundBeginTime;
-        this.pollDurationInSeconds = pollDurationInSeconds;
-        this.pollBeginTime = pollBeginTime;
-        this.actualGameMaxPontuation = 0;
     }
 
     @Override

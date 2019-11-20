@@ -1,7 +1,15 @@
 package trocadilhos.grpc.server;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class Pun {
 
     private UUID id;
@@ -10,55 +18,12 @@ public class Pun {
     private Integer number;
     private UUID playerId;
 
-    public Pun() {
-    }
-
     public Pun(String description, Integer number, UUID playerId) {
         this.id = UUID.randomUUID();
         this.description = description;
         this.number = number;
         this.playerId = playerId;
         this.pontuation = 0;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getPontuation() {
-        return pontuation;
-    }
-
-    public void setPontuation(Integer pontuation) {
-        this.pontuation = pontuation;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
-    public UUID getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(UUID playerId) {
-        this.playerId = playerId;
     }
 
     public void incrementPontuation() {
