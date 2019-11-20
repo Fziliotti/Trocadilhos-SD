@@ -1,13 +1,11 @@
 package trocadilhos.grpc.server;
 
 import io.grpc.stub.StreamObserver;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import trocadilhos.grpc.APIResponse;
 
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
